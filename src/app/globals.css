@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap"); */
+
+html {
+  font-family: var(--font-inter);
+}
+
+body {
+  background: #ffffff !important;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-outfit), sans-serif !important;
+}
+
+/* Media query for larger screens */
+@media screen and (min-width: 769px) {
+  *::-webkit-scrollbar {
+    width: 16px !important;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    height: 56px;
+    border-radius: 8px;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    background-color: #888;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}
+
+.bottom-sheet-wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+
+.bottom-sheet {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 0 8px 16px 8px;
+  box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+  top: calc(100% + 20px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  transition: all 0.2s ease;
+  transform: translateY(calc(0));
+}
+
+.bottom-sheet.dragging {
+  transition: none;
+}
+
+.bottom-sheet.show {
+  transform: translateY(calc(-100% - 20px));
+}
+
+.bottom-sheet > div:not(.bottom-sheet-grip) {
+  padding: 4px;
+}
+
+.bottom-sheet-grip {
+  padding: 16px;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+
+.bottom-sheet-grip > div {
+  margin: 0 auto;
+  height: 4px;
+  background: black;
+  border-radius: 2px;
+  width: 25%;
+}
+
+@media screen and (max-height: 730px) {
+  .modalHeight {
+    height: 100% !important;
+  }
+}
+
+/* Apply a basic style to all elements with the text-editor-content class */
+.text-editor-content * {
+  margin: 0;
+  padding: 0;
+  /* Set your preferred font-family */
+}
+
+/* Style paragraphs */
+.text-editor-content p {
+  margin: 1em 0;
+  /* 1em top and bottom margin */
+  font-size: 16px;
+  /* Set your preferred font size */
+}
+
+/* Style headings */
+.text-editor-content h1,
+.text-editor-content h2,
+.text-editor-content h3,
+.text-editor-content h4,
+.text-editor-content h5,
+.text-editor-content h6 {
+  margin: 0.5em 0;
+  /* Adjust the margin as needed */
+}
+
+/* Style links */
+.text-editor-content a {
+  color: blue;
+  /* Set the default link color */
+  text-decoration: underline;
+  /* Underline links */
+}
+
+/* Style images */
+.text-editor-content img {
+  max-width: 100%;
+  /* Ensure images don't exceed their container width */
+  height: auto;
+  /* Maintain aspect ratio */
+}
+
+/* Style lists */
+.text-editor-content ul,
+.text-editor-content ol {
+  margin: 1em 0;
+  /* Adjust the margin as needed */
+  padding: 0;
+  /* Remove default padding */
+}
+
+.text-editor-content li {
+  list-style-type: disc;
+  /* Style unordered list items with bullets */
+}
+
+/* Style forms */
+.text-editor-content form {
+  /* Add your form styles here */
+}
+
+.text-editor-content input,
+.text-editor-content textarea {
+  /* Add your input and textarea styles here */
+}
+
+/* Style tables */
+.text-editor-content table {
+  border-collapse: collapse;
+  /* Remove space between table cells */
+  width: 100%;
+  /* Make the table fill its container */
+}
+
+.text-editor-content th,
+.text-editor-content td {
+  border: 1px solid black;
+  /* Add borders to table cells */
+  padding: 8px;
+  /* Add padding to table cells */
+}
+
+/* Recolors black icons to the brand royal blue (#1e4fa3) */
+.filteredImage {
+  filter: brightness(0) saturate(100%) invert(23%) sepia(84%) saturate(1730%)
+    hue-rotate(205deg) brightness(93%) contrast(92%);
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.custom-select__container {
+  position: relative;
+  height: 40px;
+  /* Adjust the height as needed */
+}
+
+.custom-select__control {
+  height: 40px;
+  /* Adjust the height as needed */
+}
+
+.custom-select__placeholder,
+.custom-select__single-value {
+  line-height: 40px;
+  /* Center vertically within the height */
+}
+
+/* .custom-select__indicator {
+  top: 50%;
+  transform: translateY(-50%);
+} */
+
+.custom-select-new__container {
+  position: relative;
+  height: 40px;
+  /* Adjust the height as needed */
+}
+
+.custom-select-new__control {
+  height: 40px;
+  /* Adjust the height as needed */
+}
+
+.custom-select-new__placeholder,
+.custom-select-new__single-value {
+  line-height: 40px;
+  /* Center vertically within the height */
+}
+
+.modal-open {
+  overflow: hidden !important;
+}
+
+@media screen and (min-height: 820px) {
+  .filters-position {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background: #1e4fa3 !important;
+}
+
+.swiper-custom-pagination .swiper-pagination {
+ background: fixed;
+}
+/* .swiper-slide:nth-child({thumbsSwiperRef.current?.activeIndex + 1}) {
+  border: 2px solid green;
+} */

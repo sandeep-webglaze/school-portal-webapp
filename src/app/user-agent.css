@@ -1,0 +1,388 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@400;500;700&display=swap'); */
+
+.text-editor-content{
+    overflow: hidden;
+    font-family: var(--font-inter) !important;
+}
+
+.text-editor-content h1,
+.text-editor-content h2,
+.text-editor-content h3,
+.text-editor-content h4,
+.text-editor-content h5,
+.text-editor-content h6 {
+    font-family: var(--font-outfit), sans-serif !important;
+}
+
+.text-editor-content p {
+font-family: var(--font-inter), sans-serif;
+}
+
+.text-editor-content ol {
+    font-family: var(--font-inter), sans-serif;
+}
+
+.text-editor-content ul {
+    font-family: var(--font-inter), sans-serif;
+}
+
+.text-editor-content li {
+    font-family: var(--font-inter), sans-serif;
+}
+
+.text-editor-content a {
+    font-family: var(--font-inter), sans-serif;
+}
+
+.text-editor-content .text-editor-content p {
+    display: block;
+    margin-block-start: 1__qem;
+    margin-block-end: 1__qem;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.text-editor-content div {
+    display: block;
+}
+
+.text-editor-content article,
+.text-editor-content aside,
+.text-editor-content footer,
+.text-editor-content header,
+.text-editor-content hgroup,
+.text-editor-content main,
+.text-editor-content nav,
+.text-editor-content search,
+.text-editor-content section {
+    display: block;
+}
+
+.text-editor-content marquee {
+    display: inline-block;
+    width: -webkit-fill-available;
+}
+
+.text-editor-content figure {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+
+.text-editor-content center {
+    display: block;
+    /* special centering to be able to emulate the html4/netscape behaviour */
+    text-align: -webkit-center;
+}
+
+.text-editor-content hr {
+    display: block;
+    overflow: hidden;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.text-editor-content h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67__qem;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+
+.text-editor-content h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83__qem;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+
+.text-editor-content h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1__qem;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+
+.text-editor-content h4 {
+    display: block;
+    margin-block-start: 1.33__qem;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+
+.text-editor-content h5 {
+    display: block;
+    font-size: 0.83em;
+    margin-block-start: 1.67__qem;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+
+.text-editor-content h6 {
+    display: block;
+    font-size: 0.67em;
+    margin-block-start: 2.33__qem;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+
+.text-editor-content table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: gray;
+    box-sizing: border-box;
+    text-indent: initial;
+}
+
+.text-editor-content thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.text-editor-content tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.text-editor-content tfoot {
+    display: table-footer-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.text-editor-content table>tr {
+    vertical-align: middle;
+}
+
+.text-editor-content col {
+    display: table-column;
+}
+
+.text-editor-content colgroup {
+    display: table-column-group;
+}
+
+.text-editor-content tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.text-editor-content td,
+.text-editor-content th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.text-editor-content td:not(table td),
+.text-editor-content th:not(table th) {
+    padding: 1px;
+}
+
+.text-editor-content th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+.text-editor-content caption {
+    display: table-caption;
+    text-align: -webkit-center;
+}
+
+.text-editor-content ul,
+.text-editor-content menu,
+.text-editor-content dir {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1__qem;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+}
+
+.text-editor-content ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1__qem;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+}
+
+.text-editor-content li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.text-editor-content ul ul,
+.text-editor-content ol ul {
+    list-style-type: circle;
+}
+
+.text-editor-content ol ol ul,
+.text-editor-content ol ul ul,
+.text-editor-content ul ol ul,
+.text-editor-content ul ul ul {
+    list-style-type: square;
+}
+
+.text-editor-content dd {
+    display: block;
+    margin-inline-start: 40px;
+}
+
+.text-editor-content dl {
+    display: block;
+    margin-block-start: 1__qem;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.text-editor-content dt {
+    display: block;
+}
+
+.text-editor-content ol ul,
+.text-editor-content ul ol,
+.text-editor-content ul ul,
+.text-editor-content ol ol {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.text-editor-content optgroup {
+    font-weight: bolder;
+    display: block;
+}
+
+.text-editor-content option {
+    font-weight: normal;
+    display: block;
+    padding: 0 2px 1px 2px;
+    white-space: nowrap;
+    min-height: 1.2em;
+}
+
+.text-editor-content output {
+    display: inline;
+}
+
+.text-editor-content u,
+.text-editor-content ins {
+    text-decoration: underline;
+}
+
+.text-editor-content abbr[title],
+.text-editor-content acronym[title] {
+    text-decoration: dotted underline;
+}
+
+.text-editor-content strong,
+.text-editor-content b {
+    font-weight: bold;
+}
+
+.text-editor-content i,
+.text-editor-content cite,
+.text-editor-content em,
+.text-editor-content var,
+.text-editor-content address,
+.text-editor-content dfn {
+    font-style: italic;
+}
+
+.text-editor-content tt,
+.text-editor-content code,
+.text-editor-content kbd,
+.text-editor-content samp {
+    font-family: monospace;
+}
+
+.text-editor-content pre,
+.text-editor-content xmp,
+.text-editor-content plaintext,
+.text-editor-content listing {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1__qem 0;
+}
+
+.text-editor-content mark {
+    background-color: Mark;
+    color: MarkText;
+}
+
+.text-editor-content big {
+    font-size: larger;
+}
+
+.text-editor-content small {
+    font-size: smaller;
+}
+
+.text-editor-content s,
+.text-editor-content strike,
+.text-editor-content del {
+    text-decoration: line-through;
+}
+
+.text-editor-content sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+.text-editor-content sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.text-editor-content nobr {
+    white-space: nowrap;
+}
+
+.text-editor-content a:-webkit-any-link {
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.text-editor-content a:-webkit-any-link:active {
+    color: -webkit-activelink;
+}
+
+.text-editor-content a:-webkit-any-link:read-write {
+    cursor: text;
+}
+
+.text-editor-content a:-webkit-any-link:focus-visible {
+    outline-offset: 1px;
+}
