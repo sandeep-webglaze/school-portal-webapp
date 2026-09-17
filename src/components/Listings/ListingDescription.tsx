@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, FC } from "react";
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurify from "dompurify";
 import { normaliseAdminHtml } from "@/helpers/sanitizeAdminHtml";
 
 type ListingDescriptionProps = {
@@ -24,7 +24,10 @@ const ListingDescription: FC<ListingDescriptionProps> = ({ about }) => {
     FORBID_TAGS: ["meta", "title", "base", "link", "script", "style"],
     FORBID_ATTR: ["http-equiv"],
   };
-  const fullSafeHtml = DOMPurify.sanitize(normaliseAdminHtml(about), PURIFY_OPTS);
+  const fullSafeHtml = DOMPurify.sanitize(
+    normaliseAdminHtml(about),
+    PURIFY_OPTS,
+  );
   const sliceSafeHtml =
     about.length > 400
       ? DOMPurify.sanitize(normaliseAdminHtml(about.slice(0, 400)), PURIFY_OPTS)
@@ -36,7 +39,11 @@ const ListingDescription: FC<ListingDescriptionProps> = ({ about }) => {
         className="text-editor-content inline"
         dangerouslySetInnerHTML={{
           __html:
-            about.length > 400 ? (showMore ? fullSafeHtml : sliceSafeHtml) : fullSafeHtml,
+            about.length > 400
+              ? showMore
+                ? fullSafeHtml
+                : sliceSafeHtml
+              : fullSafeHtml,
         }}
       />
       {about.length > 400 && (

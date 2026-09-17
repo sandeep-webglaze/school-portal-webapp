@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Container } from "./Container";
 import useConfigStore from "@/hooks/useConfigStore";
 import { IAppConfig } from "@/api/AppConfig";
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurify from "dompurify";
 import { normaliseAdminHtml } from "@/helpers/sanitizeAdminHtml";
 import "../app/user-agent.css";
 

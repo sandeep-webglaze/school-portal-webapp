@@ -6,7 +6,7 @@ import "swiper/css";
 import { Container } from "../Container";
 import Link from "next/link";
 import Image from "next/image";
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurify from "dompurify";
 
 /**
  * Review HTML strings come from a third-party reviews service. They are
@@ -127,15 +127,18 @@ const Testimonials = () => {
                       <div className="flex flex-row  items-center justify-between ">
                         <div className="flex  items-center gap-2">
                           <div className="h-14 w-14 translate-y-1 rounded-full overflow-hidden border border-white100">
-                           <Image
-  id="preview"
-  src={review.reviewer_photo_link.replace(/w\d+-h\d+/, "w100-h100")}
-  width={56}
-  height={56}
-  loading="lazy"
-  alt="profile-pic"
-  className="object-cover w-full h-full rounded-full"
-/>
+                            <Image
+                              id="preview"
+                              src={review.reviewer_photo_link.replace(
+                                /w\d+-h\d+/,
+                                "w100-h100",
+                              )}
+                              width={56}
+                              height={56}
+                              loading="lazy"
+                              alt="profile-pic"
+                              className="object-cover w-full h-full rounded-full"
+                            />
                           </div>
                           <div className="flex flex-col justify-center md:items-start items-center gap-2 mb-2">
                             <Link
