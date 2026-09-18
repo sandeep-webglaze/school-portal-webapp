@@ -5,34 +5,36 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   // Title: 58 chars — old value was just "Contact Us" (10 chars), failed
   // every SEO audit. Keyword-rich, includes brand + value prop.
-  title: "Contact EdHippo Academy — Free School Admission Counseling",
+  title: "Contact Education Portal — Free School Admission Help in Dubai",
   // Description: 152 chars — primary keyword (contact / counseling) in
   // first 80 chars, ends with CTA.
   description:
-    "Contact EdHippo Academy for free school admission counseling. Talk to our experts to find the best CBSE, ICSE, IB & boarding schools across India.",
+    "Contact Education Portal for free, independent school admission help in Dubai. Talk to our experts to find the best British, American, IB and Indian curriculum schools across Dubai.",
   keywords: [
-    "contact EdHippo Academy",
-    "school admission counseling India",
-    "EdHippo customer support",
-    "talk to school admission expert",
-    "EdHippo helpline",
-    "school enquiry India",
-    "free admission consultation",
-    "EdHippo phone email",
+    "contact Education Portal",
+    "school admission help Dubai",
+    "Education Portal support",
+    "talk to school admission expert Dubai",
+    "Dubai school enquiry",
+    "free admission consultation Dubai",
+    "best schools in Dubai contact",
+    "Education Portal phone email",
   ],
   alternates: { canonical: "/contact-us" },
   openGraph: {
-    title: "Contact EdHippo Academy — Free School Admission Counseling",
+    title:
+      "Contact Education Portal — Free School Admission Help in Dubai",
     description:
-      "Get in touch with EdHippo for free, personalised guidance to find the perfect school for your child across India.",
+      "Get in touch with Education Portal for free, personalised guidance to find the perfect school for your child in Dubai.",
     url: "/contact-us",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact EdHippo Academy — Free School Admission Counseling",
+    title:
+      "Contact Education Portal — Free School Admission Help in Dubai",
     description:
-      "Get in touch with EdHippo for free, personalised guidance to find the perfect school for your child across India.",
+      "Get in touch with Education Portal for free, personalised guidance to find the perfect school for your child in Dubai.",
   },
 };
 

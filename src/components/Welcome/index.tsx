@@ -7,15 +7,15 @@ const Welcome_Page = () => {
     <section className="bg-grayish-light ">
       <Container bgColor="bg-grayish-light">
         <div className="text-center space-y-3 sm:space-y-6  ">
-          {/* H2 made unique — the old "Welcome To Edhippo" duplicated the H2 on
+          {/* H2 made unique — the old "Welcome To Education Portal" duplicated the H2 on
               /about, which the audit flagged as a duplicate-H2 issue. */}
           <h2 className=" text-blacky-light font-bold  text-xl md:text-3xl lg:text-4xl ">
             Find the Right School with{" "}
-            <span className="text-greenish-light">EdHippo</span>
+            <span className="text-greenish-light">Education Portal</span>
           </h2>
           <p className="text-sm sm:text-base  md:text-lg ">
-            EdHippo Academy Private Limited is your trusted partner in finding
-            the{" "}
+            Education Portal Academy Private Limited is your trusted partner in
+            finding the{" "}
             <Link href={"search/boarding-schools-in-india"}>
               <span className="font-semibold text-green-500">
                 best boarding schools in India.{" "}
@@ -75,7 +75,7 @@ const Welcome_Page = () => {
             Our platform offers curated listings, expert admission advice, and
             personalized support to help parents and students choose the right
             day or boarding school that fits their goals. Start your journey
-            with EdHippo today and explore India&apos;s most reputable
+            with Education Portal today and explore India&apos;s most reputable
             educational institutions.
           </p>
         </div>

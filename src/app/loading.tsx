@@ -1,21 +1,6 @@
-"use client";
-import Spinner from "@/components/Spinner";
 import React from "react";
+import { SchoolsGridSkeleton } from "@/components/Shimmer";
 
-const loading = () => {
-  return (
-    <div
-      className="
-      h-[70vh]
-      flex 
-      flex-col 
-      justify-center 
-      items-center 
-    "
-    >
-      <Spinner />
-    </div>
-  );
-};
+const loading = () => <SchoolsGridSkeleton count={6} />;
 
 export default loading;

@@ -10,8 +10,8 @@ const VideoBanner = () => {
           <span className="text-greenish-light">Introduction Video</span>
         </h3>
         <p className="text-center text-lg mb-8">
-          Discover how Edhippo can help you find the perfect school for your
-          child.
+          Discover how Education Portal can help you find the perfect school for
+          your child.
         </p>
       </div>
       <div className="aspect-video rounded-lg overflow-hidden shadow-lg">

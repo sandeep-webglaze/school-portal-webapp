@@ -16,7 +16,7 @@
  *
  * Without this file, ANY backend hiccup that crashes a server component in
  * the root layout produces that ugly raw error page — which is what just
- * happened on edhippo.com. With it, users always see a polished error UI
+ * happened on Education Portal.com. With it, users always see a polished error UI
  * with a recovery action, and you get a digest in the logs to debug from.
  *
  * Per Next.js requirements, global-error.tsx:
@@ -115,7 +115,14 @@ export default function GlobalError({
             homepage to continue your school search.
           </p>
 
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: 12,
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
             <button
               onClick={() => reset()}
               style={{

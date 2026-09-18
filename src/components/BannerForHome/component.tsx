@@ -18,7 +18,9 @@ const BannerForHome = () => {
             quality={75}
             sizes="(max-width: 768px) 100vw, 1300px"
             className="rounded-lg"
-            alt={"EdHippo school admissions 2026-27 — free counselling"}
+            alt={
+              "Education Portal school admissions 2026-27 — free counselling"
+            }
           />
         </div>
       </Container>

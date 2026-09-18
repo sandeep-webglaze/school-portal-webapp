@@ -23,12 +23,11 @@ type NavItem = {
 export const navList: NavItem[] = [
   { title: "Home", path: "/", icon: HiMiniHome },
   { title: "Schools", path: "/schools" },
-  { title: "Guides", path: "/schools" },
   { title: "About Us", path: "/about" },
   { title: "Contact", path: "/contact-us" },
 ];
 
-// NOTE: intentionally ignores the API config so no EdHippo social links from
+// NOTE: intentionally ignores the API config so no Education Portal social links from
 // the backend/DB ever leak into the UI. Always uses the SOCIAL_LINKS constants.
 export function getMediaDetails(_config?: IAppConfig) {
   return [

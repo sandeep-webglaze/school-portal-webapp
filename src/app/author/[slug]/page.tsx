@@ -48,10 +48,13 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
 
   // Admin rich-text bio — same normalise + sanitize pipeline as slugContent
   // on the search page (demote H1s, strip meta/script, force FORBID_TAGS).
-  const bioHtml = DOMPurify.sanitize(normaliseAdminHtml(author.fullBioHtml || ""), {
-    FORBID_TAGS: ["meta", "title", "base", "link", "script", "style"],
-    FORBID_ATTR: ["http-equiv"],
-  });
+  const bioHtml = DOMPurify.sanitize(
+    normaliseAdminHtml(author.fullBioHtml || ""),
+    {
+      FORBID_TAGS: ["meta", "title", "base", "link", "script", "style"],
+      FORBID_ATTR: ["http-equiv"],
+    },
+  );
 
   const personSchema = {
     "@context": "https://schema.org",
@@ -64,7 +67,7 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
     ...(author.linkedinUrl ? { sameAs: [author.linkedinUrl] } : {}),
     worksFor: {
       "@type": "Organization",
-      name: "EdHippo Academy Private Limited",
+      name: "Education Portal Academy Private Limited",
       url: SITE_BASE_URL,
     },
   };
@@ -108,8 +111,12 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {author.stats.map((stat, idx) => (
                     <div key={idx}>
-                      <p className="text-2xl md:text-3xl font-bold">{stat.value}</p>
-                      <p className="text-xs md:text-sm text-green-200/80">{stat.label}</p>
+                      <p className="text-2xl md:text-3xl font-bold">
+                        {stat.value}
+                      </p>
+                      <p className="text-xs md:text-sm text-green-200/80">
+                        {stat.label}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -193,27 +200,35 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
         )}
 
         {/* ---------- SPECIALISATIONS ---------- */}
-        {Array.isArray(author.specialisations) && author.specialisations.length > 0 && (
-          <section aria-label="Areas of specialisation">
-            <p className="text-xs font-bold uppercase tracking-wider text-green-700 mb-1">
-              What I Cover
-            </p>
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-5">
-              Areas of specialisation
-            </h2>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {author.specialisations.map((item, idx) => (
-                <div key={idx} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-                  {item.icon && <p className="text-2xl mb-2">{item.icon}</p>}
-                  <p className="font-bold text-gray-900 text-sm md:text-base">{item.title}</p>
-                  {item.description && (
-                    <p className="text-xs md:text-sm text-gray-600 mt-1">{item.description}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        {Array.isArray(author.specialisations) &&
+          author.specialisations.length > 0 && (
+            <section aria-label="Areas of specialisation">
+              <p className="text-xs font-bold uppercase tracking-wider text-green-700 mb-1">
+                What I Cover
+              </p>
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-5">
+                Areas of specialisation
+              </h2>
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {author.specialisations.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+                  >
+                    {item.icon && <p className="text-2xl mb-2">{item.icon}</p>}
+                    <p className="font-bold text-gray-900 text-sm md:text-base">
+                      {item.title}
+                    </p>
+                    {item.description && (
+                      <p className="text-xs md:text-sm text-gray-600 mt-1">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
         {/* ---------- CREDENTIALS ---------- */}
         {Array.isArray(author.credentials) && author.credentials.length > 0 && (
@@ -226,11 +241,18 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
             </h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
               {author.credentials.map((item, idx) => (
-                <div key={idx} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+                <div
+                  key={idx}
+                  className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+                >
                   {item.icon && <p className="text-2xl mb-2">{item.icon}</p>}
-                  <p className="font-bold text-gray-900 text-sm md:text-base">{item.title}</p>
+                  <p className="font-bold text-gray-900 text-sm md:text-base">
+                    {item.title}
+                  </p>
                   {item.description && (
-                    <p className="text-xs md:text-sm text-gray-600 mt-1">{item.description}</p>
+                    <p className="text-xs md:text-sm text-gray-600 mt-1">
+                      {item.description}
+                    </p>
                   )}
                 </div>
               ))}
@@ -240,7 +262,11 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
 
         {/* ---------- ARTICLES / ASSIGNED PAGES ---------- */}
         {articles.length > 0 && (
-          <section id="author-articles" aria-label="Pages by this author" className="scroll-mt-24">
+          <section
+            id="author-articles"
+            aria-label="Pages by this author"
+            className="scroll-mt-24"
+          >
             <p className="text-xs font-bold uppercase tracking-wider text-green-700 mb-1">
               My Work
             </p>
@@ -294,16 +320,16 @@ export async function generateMetadata({
   const canonicalPath = `/author/${params.slug}`;
   if (!author) {
     return {
-      title: "Author | EdHippo",
+      title: "Author | Education Portal",
       metadataBase: new URL(SITE_BASE_URL),
       alternates: { canonical: canonicalPath },
     };
   }
 
-  const title = `${author.name} — ${author.designation || "Education Expert"} | EdHippo`;
+  const title = `${author.name} — ${author.designation || "Education Expert"} | Education Portal`;
   const description =
     author.shortBio ||
-    `${author.name} writes school guides and rankings on EdHippo.`;
+    `${author.name} writes school guides and rankings on Education Portal.`;
 
   return {
     title,

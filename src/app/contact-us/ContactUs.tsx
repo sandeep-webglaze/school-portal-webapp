@@ -1,218 +1,241 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { getMediaDetails } from "@/_mocks_/NavJson";
 import { ContactForm } from "@/components/ContactUs";
-import { Container } from "@/components/Container";
-import { ColoredHeading } from "@/components/Heading";
 import useConfigStore from "@/hooks/useConfigStore";
 import Link from "next/link";
 import React, { Fragment } from "react";
+import { SITE_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/constants";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaLocationDot,
+  FaArrowRight,
+  FaHeadset,
+  FaRegClock,
+} from "react-icons/fa6";
 
-import { FaEnvelope } from "react-icons/fa6";
-
-// NOTE: <title> and <meta name="description"> previously lived in a
-// next/head <Head> block right here. That API is Pages-Router-only — in
-// the App Router it silently renders the tags into the body, which
-// Search Console flags under "Robots/Directives outside head". The real
-// metadata is now declared via generateMetadata() in app/contact-us/page.tsx.
+const CONTAINER = "mx-auto w-[90%] max-w-[1280px]";
 
 const Contact = () => {
   const { config } = useConfigStore();
   const media = getMediaDetails(config);
 
+  const email = config?.contactUs?.mail || CONTACT_EMAIL;
+  const phone = config?.contactUs?.phoneNumber || CONTACT_PHONE;
+  const address = config?.contactUs?.address || "Dubai, United Arab Emirates";
+
+  const INFO = [
+    {
+      icon: FaEnvelope,
+      label: "Email us",
+      value: email,
+      href: `mailto:${email}`,
+      bg: "#e7eefc",
+      fg: "#1e4fa3",
+    },
+    {
+      icon: FaPhone,
+      label: "Call us",
+      value: phone,
+      href: `tel:${phone}`,
+      bg: "#dff3ec",
+      fg: "#1a9c78",
+    },
+    {
+      icon: FaLocationDot,
+      label: "Visit us",
+      value: address,
+      href: "#map",
+      bg: "#fbf1d9",
+      fg: "#c79a2e",
+    },
+  ];
+
   return (
     <Fragment>
-      <div className='bg-[url("/about.png")] bg-no-repeat bg-cover bg-right md:bg-center '>
-        <Container bgColor="px-4  flex  items-center sm:px-8 lg:px-10 pt-10 md:pt-20 max-w-screen lg:w-screen md:h-[450px]  h-[250px] lg:h-[45vh]  ">
-          <div className=" p-2 lg:p-6 max-w-sm lg:max-w-lg xl:max-w-2xl  ">
-            {/* H1 was "Contact Us" (10 chars) — too short for SEO. Expanded
-                with the brand + value prop so the page's main heading
-                ranks for "school admission counseling" queries too. */}
-            <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-10 text-white">
-              Contact <span className="text-greenish-light">EdHippo Academy</span>{" "}
-              — Free School Admission Help
+      {/* ============================= HERO (left aligned) ============================= */}
+      <section className="relative overflow-hidden bg-[#0b1f45]">
+        <img
+          src="/about.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f45] via-[#0b1f45]/95 to-[#0b1f45]/60" />
+        <div className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-gold/20 blur-3xl" />
+        <div className={`relative ${CONTAINER} py-16 md:py-20`}>
+          <div className="max-w-2xl text-left text-white">
+            <span className="inline-flex items-center rounded-lg bg-gold/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold ring-1 ring-gold/30">
+              Contact Us
+            </span>
+            <h1 className="mt-4 text-3xl font-extrabold leading-[1.1] md:text-5xl">
+              We&apos;re here to help you find the{" "}
+              <span className="text-gold">right school</span>
             </h1>
+            <p className="mt-4 max-w-xl text-sm text-white/80 md:text-base">
+              Have a question about schools, admissions or listing your school
+              on {SITE_NAME}? Our Dubai team is happy to help — reach out any way
+              you like.
+            </p>
           </div>
-        </Container>
-      </div>
-      <section className="py-16 bg-gray-100 ">
-        <div className="justify-center flex-1 max-w-5xl px-4 py-4 mx-auto lg:py-10 md:px-7">
-          <div className="max-w-xl mx-auto">
-            <div className="text-center ">
-              <div className="relative flex flex-col items-center">
-                <h2 className=" text-3xl md:text-5xl font-bold ">
-                  Our <span className="text-green-500"> Contact</span>
-                </h2>
-                <div className="flex w-24 mt-1 mb-10 overflow-hidden rounded">
-                  <div className="flex-1 h-2 bg-green-200"></div>
-                  <div className="flex-1 h-2 bg-green-400"></div>
-                  <div className="flex-1 h-2 bg-green-600"></div>
-                </div>
-              </div>
-              <p className="mb-16  text-sm md:text-base text-center text-gray-500">
-                Feel free to reach out to our dedicated support team for any
-                inquiries, assistance, or collaborations. Your educational
-                journey is our priority, and were here to ensure you have all
-                the information you need.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-wrap mb-8 -mx-4">
-            <div className="w-full px-4 mb-4 lg:w-1/3 lg:mb-0">
-              <div className="h-full py-12 text-center transition-all rounded-lg shadow  bg-white hover:shadow-lg">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-6 text-gray-100 bg-green-500 rounded-full ">
-                  <FaEnvelope className="text-white" />
-                </div>
-                <p className="mb-4 text-xl font-bold leading-9 text-gray-700 md:text-2xl ">
-                  Email
-                </p>
-                <a
-                  href={`mailto:${config?.contactUs.mail}`}
-                  target="_blank"
-                  className="text-base font-medium text-gray-500 md:text-lg"
-                >
-                  {config?.contactUs.mail}
-                </a>
-              </div>
-            </div>
-            <div className="w-full px-4 mb-4 lg:w-1/3 lg:mb-0">
-              <div className="h-full py-12 text-center transition-all rounded-lg shadow  bg-white hover:shadow-lg">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-6 text-gray-100 bg-green-500 rounded-full ">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={16}
-                    height={16}
-                    fill="currentColor"
-                    className="bi bi-telephone"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"></path>
-                  </svg>
-                </div>
-                <p className="mb-4 text-xl font-bold leading-9 text-gray-700 md:text-2xl ">
-                  Phone
-                </p>
-                <a
-                  href={`tel:${config?.contactUs.phoneNumber}`}
-                  target="_blank"
-                  className="text-base font-medium text-gray-500 md:text-lg "
-                >
-                  {config?.contactUs.phoneNumber}
-                </a>
-              </div>
-            </div>
-            <div className="w-full px-4 mb-4 lg:w-1/3 lg:mb-0">
-              <div className="h-full py-12 text-center transition-all rounded-lg shadow  bg-white hover:shadow-lg">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-6 text-gray-100 bg-green-500 rounded-full ">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={16}
-                    height={16}
-                    fill="currentColor"
-                    className="bi bi-grid-3x3"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z"></path>
-                  </svg>
-                </div>
-                <p className="mb-4 text-xl font-bold leading-9 text-gray-700 md:text-2xl ">
-                  Social
-                </p>
-                <div className="flex items-center justify-center  gap-3 text-xl text-green-600 ">
-                  {media.map((item, id) => {
-                    const Icon = item.icon;
-                    return (
-                      <Link
-                        key={id}
-                        href={item.path}
-                        target="_blank"
-                        className="hover:text-green-600"
-                      >
-                        <Icon />
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-          <ContactForm name="contact-form" />
         </div>
-        <div className="flex flex-col justify-center items-center">
-          <ColoredHeading greenText={"Location"} title={"Our"} />
-          <div className="flex w-24 mt-1  overflow-hidden rounded">
-            <div className="flex-1 h-2 bg-green-600"></div>
-          </div>
+      </section>
 
-          <Container>
-            {/* <div className="grid grid-cols-1   items-center justify-center">
-                <Image
-                  src="/images/pearls-omaxe.jpg"
-                  width="150"
-                  height="150"
-                  className="rounded-full border object-cover w-[150px] h-[150px]"
-                  alt={"Delhi Office | " + SITE_NAME}
-                />
-              
+      {/* ============================= INFO + FORM ============================= */}
+      <section className="bg-[#eef4fb]">
+        <div
+          className={`${CONTAINER} grid grid-cols-1 gap-8 py-16 lg:grid-cols-[0.9fr_1.1fr]`}
+        >
+          {/* left: info */}
+          <div>
+            <span className="inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+              Get in touch
+            </span>
+            <h2 className="mt-3 text-2xl font-extrabold text-blacky-light md:text-3xl">
+              Reach out to our team
+            </h2>
+            <p className="mt-2 max-w-md text-sm text-blacky-light/60">
+              Free, friendly and independent guidance for parents and schools
+              across Dubai.
+            </p>
 
-                <ul className="text-base">
-                  <li className="my-1 flex  gap-3">
-                    <span className="text-xl mt-1 text-greenish-light ">
-                      <FaLocationDot className="text-inherit " />
-                    </span>
-                    {config?.contactUs.address}
-                    
-                  </li>
-                  <a
-                    href=  {`tel:${config?.contactUs.phoneNumber}`}
-                    target="_blank"
-                    className="my-1 flex items-center gap-3"
-                  >
-                    <FaPhone className="text-greenish-light" />
-                    {config?.contactUs.phoneNumber}
-                  </a>
-
-                  <a
-                    href={`mailto:${config?.contactUs.mail}`}
-                    target="_blank"
-                    className="my-1 flex items-center gap-3"
-                  >
-                    <FaEnvelope className="text-greenish-light" />
-                    {config?.contactUs.mail}
-                  </a>
-                </ul>
-              </div>
-             
-             
-            
-            </div> */}
-            <div className="w-full">
-              <p className="text-center pb-10 text-xl text-gray-600 lg:px-36">
-                Explore our company&apos;s main office location below and find
-                directions via Google Maps.
-              </p>
-              <div className=" text-center items-center justify-center w-full ">
-                <div
-                  style={{
-                    textDecoration: "none",
-                    overflow: "hidden",
-                    maxWidth: "100%",
-                    height: 500,
-                  }}
+            <div className="mt-6 space-y-3">
+              {INFO.map((c) => (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  className="flex items-center gap-4 rounded-2xl bg-white p-5 shadow-light transition hover:-translate-y-0.5 hover:shadow-spread"
                 >
-                  <div
-                    id="canvas-for-googlemap"
-                    style={{ height: "100%", width: "100%", maxWidth: "100%" }}
+                  <span
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg"
+                    style={{ backgroundColor: c.bg, color: c.fg }}
                   >
-                    <iframe
-                      style={{ height: "100%", width: "100%", border: 0 }}
-                      frameBorder={0}
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.7674824543305!2d77.09234231125026!3d28.60675148514911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86aeb44bb164185f%3A0x97939eb5ee6bb93d!2sEDHIPPO%20ACADEMY%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1738318587059!5m2!1sen!2sin"
-                    />
+                    <c.icon />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-blacky-light/45">
+                      {c.label}
+                    </p>
+                    <p className="truncate text-sm font-bold text-blacky-light">
+                      {c.value}
+                    </p>
                   </div>
-                </div>
+                </a>
+              ))}
+            </div>
+
+            {/* hours + social */}
+            <div className="mt-4 flex items-center gap-3 rounded-2xl bg-white p-5 shadow-light">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-600/10 text-lg text-green-600">
+                <FaRegClock />
+              </span>
+              <div>
+                <p className="text-sm font-bold text-blacky-light">
+                  Sun – Thu, 9:00 AM – 6:00 PM
+                </p>
+                <p className="text-xs text-blacky-light/55">
+                  We reply to most messages within 24 hours.
+                </p>
               </div>
             </div>
-          </Container>
+
+            <div className="mt-5 flex items-center gap-2">
+              {media.map((item, id) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={id}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${SITE_NAME} social link`}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-blacky-light shadow-light transition hover:bg-[#17458f] hover:text-white"
+                  >
+                    <Icon />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* right: form */}
+          <div className="rounded-[28px] bg-white p-6 shadow-[0_25px_60px_-25px_rgba(15,35,70,0.3)] sm:p-8">
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-600/10 text-green-600">
+                <FaHeadset />
+              </span>
+              <div>
+                <h3 className="text-xl font-extrabold text-blacky-light">
+                  Send us a message
+                </h3>
+                <p className="text-sm text-blacky-light/55">
+                  We&apos;ll get back to you within 24 hours.
+                </p>
+              </div>
+            </div>
+            <div className="mt-5">
+              <ContactForm name="contact-form" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================= MAP (Dubai) ============================= */}
+      <section id="map" className="bg-white">
+        <div className={`${CONTAINER} py-14`}>
+          <div className="mb-6 text-left">
+            <span className="inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+              Our Location
+            </span>
+            <h2 className="mt-3 text-2xl font-extrabold text-blacky-light md:text-3xl">
+              Find us in Dubai
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-blacky-light/60">
+              We serve families and schools across all areas of Dubai and the
+              UAE.
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-3xl shadow-spread ring-1 ring-gray-100">
+            <iframe
+              title="Dubai map"
+              src="https://maps.google.com/maps?q=Dubai&t=&z=11&ie=UTF8&iwloc=&output=embed"
+              className="h-[420px] w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================= CTA ============================= */}
+      <section className="bg-[#eef4fb]">
+        <div
+          className={`${CONTAINER} grid grid-cols-1 items-center gap-6 py-14 md:grid-cols-[1.4fr_0.6fr]`}
+        >
+          <div>
+            <h2 className="text-2xl font-extrabold text-blacky-light md:text-3xl">
+              Looking for a school for your child?
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-blacky-light/60">
+              Browse verified schools or let our counsellors guide you — free of
+              charge.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 md:justify-self-end">
+            <Link
+              href="/schools"
+              className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-green-500"
+            >
+              Search Schools <FaArrowRight className="text-[11px]" />
+            </Link>
+            <Link
+              href="/register-school"
+              className="inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-bold text-blacky-light transition hover:opacity-90"
+            >
+              List Your School
+            </Link>
+          </div>
         </div>
       </section>
     </Fragment>

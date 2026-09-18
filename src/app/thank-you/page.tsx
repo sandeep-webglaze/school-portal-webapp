@@ -13,9 +13,9 @@ import ThankYouContent from "./ThankYouContent";
  * guaranteed way to keep it out.
  */
 export const metadata: Metadata = {
-  title: "Thank You — EdHippo Academy",
+  title: "Thank You — Education Portal Academy",
   description:
-    "Thank you for your enquiry on EdHippo Academy. Our admission counsellor will reach out to you shortly.",
+    "Thank you for your enquiry on Education Portal Academy. Our admission counsellor will reach out to you shortly.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/thank-you" },
 };

@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 
 const CompareTable = dynamic(
   () => import("@/components/Compare Schools/component"),
-  { ssr: false }
+  { ssr: false },
 );
 
 const MAX_SCOOL_TO_COMPARE = 2;
@@ -57,8 +57,8 @@ const CompareSchools = () => {
                 primary keyword phrase so it ranks for "compare schools
                 side by side" / "school comparison India" queries. */}
             <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-10 z-20 absolute top-[20%] md:top-[25%] text-white">
-              Compare <span className="text-greenish-light">Schools</span>{" "}
-              Side by Side in India
+              Compare <span className="text-greenish-light">Schools</span> Side
+              by Side in India
             </h1>
           </div>
         </Container>
@@ -122,32 +122,32 @@ const CompareSchools = () => {
           <p className="text-slate-600 leading-relaxed mb-4">
             Choosing a school is one of the biggest decisions a parent makes,
             and comparing two or three options side-by-side is the fastest way
-            to see what really matters. EdHippo&apos;s comparison tool lines
-            up two schools at a time across the criteria most Indian parents
-            care about — board affiliation (CBSE, ICSE, IB or State), annual
-            fee structure, classes offered, infrastructure, hostel facilities,
-            location, and verified parent reviews — so you can decide on
-            evidence instead of brochures.
+            to see what really matters. Education Portal&apos;s comparison tool
+            lines up two schools at a time across the criteria most Indian
+            parents care about — board affiliation (CBSE, ICSE, IB or State),
+            annual fee structure, classes offered, infrastructure, hostel
+            facilities, location, and verified parent reviews — so you can
+            decide on evidence instead of brochures.
           </p>
           <p className="text-slate-600 leading-relaxed mb-4">
             Start by shortlisting schools that share at least two of your
-            non-negotiables (board, city, day vs boarding). Add them above,
-            then look at the side-by-side row for fees first: a wider fee
-            gap usually means one school is investing more in extracurriculars
-            or smaller class sizes. Next, scan the facilities row to confirm
-            the school offers what your child actually needs — sports
-            programs, language labs, transport routes — rather than what looks
-            impressive on a website. Finally, read the latest parent reviews
-            on each school&apos;s detail page; reviews from the last 12 months
-            are the most reliable signal of what daily life at the school is
-            really like.
+            non-negotiables (board, city, day vs boarding). Add them above, then
+            look at the side-by-side row for fees first: a wider fee gap usually
+            means one school is investing more in extracurriculars or smaller
+            class sizes. Next, scan the facilities row to confirm the school
+            offers what your child actually needs — sports programs, language
+            labs, transport routes — rather than what looks impressive on a
+            website. Finally, read the latest parent reviews on each
+            school&apos;s detail page; reviews from the last 12 months are the
+            most reliable signal of what daily life at the school is really
+            like.
           </p>
           <p className="text-slate-600 leading-relaxed">
-            If you&apos;re still unsure after the comparison, EdHippo&apos;s
-            admission counsellors offer free guidance — they&apos;ll walk you
-            through admission dates, eligibility, documents, and the
-            application process for both schools so you can finalise with
-            confidence.
+            If you&apos;re still unsure after the comparison, Education
+            Portal&apos;s admission counsellors offer free guidance —
+            they&apos;ll walk you through admission dates, eligibility,
+            documents, and the application process for both schools so you can
+            finalise with confidence.
           </p>
         </section>
       </Container>

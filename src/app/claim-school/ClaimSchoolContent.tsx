@@ -22,16 +22,16 @@ const ClaimSchoolContent = () => {
                 had <h2> (ColoredHeading) and <h3> elements, so Google had
                 no main-topic signal and fell back to the meta title. */}
             <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold text-slate-800 mb-2">
-              Claim Your School on EdHippo Academy
+              Claim Your School on Education Portal Academy
             </h1>
             <ColoredHeading
-              greenText={"EDHIPPO ACADEMY PRIVATE LIMITED"}
+              greenText={"Education Portal ACADEMY PRIVATE LIMITED"}
               title={"Surpass Your Enrollment Goals with"}
             />
             <p className="text-neutral-500 my-4 text-base ">
-              EDHIPPO ACADEMY PRIVATE LIMITED streamlines school admissions,
-              fostering growth and diversity while preserving valuable resources
-              for teaching and learning excellence.
+              Education Portal ACADEMY PRIVATE LIMITED streamlines school
+              admissions, fostering growth and diversity while preserving
+              valuable resources for teaching and learning excellence.
             </p>
             <Button label="Claim Now" onClick={handleRedirect} />
           </div>
@@ -67,7 +67,7 @@ const ClaimSchoolContent = () => {
                 title={"Claim your School"}
               />
               <div className="flex flex-col gap-1 mt-4">
-                <Pointer text="Take control of your school's page on EDHIPPO ACADEMY PRIVATE LIMITED by claiming ownership." />
+                <Pointer text="Take control of your school's page on Education Portal ACADEMY PRIVATE LIMITED by claiming ownership." />
                 <Pointer text="Earn the prestigious badge on your school profile." />
                 <Pointer text="Directly manage and update your school's page." />
                 <Pointer text="Keep parents informed of the latest school details." />
@@ -116,7 +116,7 @@ const ClaimSchoolContent = () => {
             <div>
               <ColoredHeading greenText={"Leads"} title={"Verified"} />
               <div className="flex flex-col gap-1 mt-4">
-                <Pointer text="Access genuine leads verified by EDHIPPO ACADEMY PRIVATE LIMITED." />
+                <Pointer text="Access genuine leads verified by Education Portal ACADEMY PRIVATE LIMITED." />
                 <Pointer text="Connect with parents actively seeking school information." />
                 <Pointer text="Increase enrolment by reaching out to interested families." />
                 <Pointer text="Target a specific audience to enhance your admissions process." />

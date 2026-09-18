@@ -12,7 +12,7 @@ import type { Metadata } from "next";
  *     `robots: { index: false }` somewhere upstream.
  *   - 32 URLs with `notranslate`, 5 with `noimageindex`, 1 with `nosnippet`
  *     — same root cause. Each of these is a real SEO regression.
- *   - 42 URLs with duplicate <title> tags ("EdHippo Academy | Find Top
+ *   - 42 URLs with duplicate <title> tags ("Education Portal Academy | Find Top
  *     Boarding Schools in India") because admin saved empty / missing
  *     metadata and the layout's default leaked down.
  *

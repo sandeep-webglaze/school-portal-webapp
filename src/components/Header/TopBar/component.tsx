@@ -14,7 +14,7 @@ import {
 import { IAppConfig } from "@/api/AppConfig";
 
 // Contact + social details come ONLY from the constants file — never from the
-// API/DB — so no EdHippo data can ever appear here. Update them in
+// API/DB — so no Education Portal data can ever appear here. Update them in
 // src/constants/client.ts.
 const TopBar = ({ config: _config }: { config?: IAppConfig }) => {
   const media = getMediaDetails();

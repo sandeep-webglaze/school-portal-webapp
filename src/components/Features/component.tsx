@@ -213,7 +213,7 @@ const Features = () => {
             </div>
           </Link>
 
-          <Link href="https://blog.edhippo.com/" target="_blank">
+          <Link href="https://blog.Education Portal.com/" target="_blank">
             <div className="border rounded-md shadow-md p-4 hover:scale-105   transition duration-500 cursor-pointer ">
               <div className="bg-greenish-light rounded-full w-16 h-16 flex justify-center items-center text-white shadow-md">
                 <svg

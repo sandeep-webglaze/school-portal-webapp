@@ -24,7 +24,10 @@ import Whatsapp from "./Whatsapppopup";
 import { getAppConfig } from "@/api/getAppConfig";
 import FaqSchema, { FaqItem } from "@/components/FaqSchema";
 import { buildSearchFaqs } from "@/helpers/searchFaq";
-import { generateTitleFromSlug, generateDescriptionFromSlug } from "@/helpers/seoSlugHelpers";
+import {
+  generateTitleFromSlug,
+  generateDescriptionFromSlug,
+} from "@/helpers/seoSlugHelpers";
 import { sanitizeSlugMeta } from "@/helpers/sanitizeSlugMeta";
 import { normaliseAdminHtml } from "@/helpers/sanitizeAdminHtml";
 import { getAlternateSlugs } from "@/helpers/citySlugAliases";
@@ -34,7 +37,7 @@ import { IAuthor } from "@/api/author";
 
 // Dynamically import Testimonials component
 const DynamicTestimonials = dynamic(
-  () => import("@/components/Testimonials/component")
+  () => import("@/components/Testimonials/component"),
 );
 const videoMap: Record<string, string> = {
   "boarding-schools-in-delhi":
@@ -53,7 +56,7 @@ function wrapTables(html: string) {
       <div class="overflow-x-auto my-6">
         <div class="min-w-[700px]">${table}</div>
       </div>
-    `
+    `,
   );
 }
 
@@ -103,8 +106,7 @@ const Schools = async ({ params, searchParams }: SchoolsProps) => {
       // lookup tear down the page. Worst case: that alternate is treated
       // as "no data" and we move on to the next alias.
       const altResult = await safeCall(
-        () =>
-          fetchSchools({ slug: altSlug }, { ...searchParams, page: 1 }),
+        () => fetchSchools({ slug: altSlug }, { ...searchParams, page: 1 }),
         null,
         `search:${slug}:alt:${altSlug}`,
       );
@@ -198,17 +200,17 @@ const Schools = async ({ params, searchParams }: SchoolsProps) => {
   // auto-generate a default FAQ set from the slug. The SAME list drives both
   // the FAQPage schema and the visible accordion (Google anti-cloaking rule).
   const adminHasFaq = adminSchemas.some(
-    (s) => s && (s["@type"] === "FAQPage" || s.type === "FAQPage")
+    (s) => s && (s["@type"] === "FAQPage" || s.type === "FAQPage"),
   );
   const adminFaqs: FaqItem[] = Array.isArray(schools.data.slugData?.faqs)
-    ? schools.data.slugData!.faqs!
-        .filter(
+    ? schools.data
+        .slugData!.faqs!.filter(
           (f) =>
             f &&
             typeof f.question === "string" &&
             typeof f.answer === "string" &&
             f.question.trim().length > 0 &&
-            f.answer.trim().length > 0
+            f.answer.trim().length > 0,
         )
         .map((f) => ({ question: f.question.trim(), answer: f.answer.trim() }))
     : [];
@@ -229,7 +231,7 @@ const Schools = async ({ params, searchParams }: SchoolsProps) => {
   const renderedAdminSchemas =
     adminFaqs.length > 0
       ? adminSchemas.filter(
-          (s) => !(s && (s["@type"] === "FAQPage" || s.type === "FAQPage"))
+          (s) => !(s && (s["@type"] === "FAQPage" || s.type === "FAQPage")),
         )
       : adminSchemas;
 
@@ -243,7 +245,7 @@ const Schools = async ({ params, searchParams }: SchoolsProps) => {
   const pageHeading =
     adminHeroTitle ||
     generateTitleFromSlug(slug)
-      .replace(/\s*\|\s*EdHippo\s*$/i, "")
+      .replace(/\s*\|\s*Education Portal\s*$/i, "")
       .replace(/\s+2026-27\s*$/i, "");
   const pageSubheading = adminHeroSubtitle || generateDescriptionFromSlug(slug);
 
@@ -272,7 +274,7 @@ const Schools = async ({ params, searchParams }: SchoolsProps) => {
         ...(pageAuthor.linkedinUrl ? { sameAs: [pageAuthor.linkedinUrl] } : {}),
         worksFor: {
           "@type": "Organization",
-          name: "EdHippo Academy Private Limited",
+          name: "Education Portal Academy Private Limited",
           url: SITE_BASE_URL,
         },
       }
@@ -284,9 +286,7 @@ const Schools = async ({ params, searchParams }: SchoolsProps) => {
       {renderedAdminSchemas.map((schema, idx) => (
         <JsonLd key={idx} id={`ld-search-admin-${idx}`} data={schema} />
       ))}
-      {faqs.length > 0 && (
-        <FaqSchema id="ld-search-faq" items={faqs} />
-      )}
+      {faqs.length > 0 && <FaqSchema id="ld-search-faq" items={faqs} />}
       {authorSchema && <JsonLd id="ld-search-author" data={authorSchema} />}
       <SearchBanner
         heading={pageHeading}
@@ -464,17 +464,17 @@ export async function generateMetadata({
 
   if (slug === "all-schools") {
     return {
-      title: "List of All Schools | EDHIPPO ACADEMY Pvt Ltd",
+      title: "List of All Schools | Education Portal ACADEMY Pvt Ltd",
       description:
-        "Find a complete list of schools with EDHIPPO ACADEMY Pvt Ltd. Compare options to make the best choice for your child’s future.",
+        "Find a complete list of schools with Education Portal ACADEMY Pvt Ltd. Compare options to make the best choice for your child’s future.",
       metadataBase: new URL(SITE_BASE_URL),
       alternates: { canonical: canonicalPath },
       robots: POSITIVE_ROBOTS,
       openGraph: {
         url: canonicalPath,
-        title: "List of All Schools | EDHIPPO ACADEMY Pvt Ltd",
+        title: "List of All Schools | Education Portal ACADEMY Pvt Ltd",
         description:
-          "Find a complete list of schools with EDHIPPO ACADEMY Pvt Ltd. Compare options to make the best choice for your child’s future.",
+          "Find a complete list of schools with Education Portal ACADEMY Pvt Ltd. Compare options to make the best choice for your child’s future.",
       },
     };
   }
@@ -532,14 +532,14 @@ export async function generateMetadata({
       ...(metaData?.data?.openGraph ??
         globalMetaData?.defaultSlugMetaData?.openGraph),
       title: (adminMeta.openGraph as any)?.title || finalTitle,
-      description: (adminMeta.openGraph as any)?.description || finalDescription,
+      description:
+        (adminMeta.openGraph as any)?.description || finalDescription,
       url: canonicalPath,
     },
     twitter: {
       card: "summary_large_image",
       title: (adminMeta.twitter as any)?.title || finalTitle,
-      description:
-        (adminMeta.twitter as any)?.description || finalDescription,
+      description: (adminMeta.twitter as any)?.description || finalDescription,
     },
   };
 }

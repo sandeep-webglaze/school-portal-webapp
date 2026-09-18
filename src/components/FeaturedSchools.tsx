@@ -105,7 +105,7 @@ const FeaturedSchools: FC<FeaturedSchoolsProps> = ({ schools }) => {
                   <Image
                     src={
                       school.images[0] ??
-                      "https://cdn.edhippo.com/public/school-images/Welham_Boys_School_1705126856967.jpg"
+                      "https://cdn.Education Portal.com/public/school-images/Welham_Boys_School_1705126856967.jpg"
                     }
                     className=" object-cover "
                     alt={`${toTitleCase(school.name)} | ${SITE_NAME}`}

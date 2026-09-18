@@ -1,21 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SITE_NAME } from "@/constants";
+import { getAllSchools } from "@/api/schools/ListofSchools";
+import { SchoolCardSkeleton } from "@/components/Shimmer";
+import { Picker } from "@/components/Picker";
 import {
   FaMagnifyingGlass,
   FaGraduationCap,
   FaUsers,
-  FaCircleCheck,
   FaLocationDot,
   FaHeart,
   FaStar,
   FaHeadset,
   FaShieldHalved,
   FaArrowRight,
+  FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
+  FaTag,
   FaQuoteLeft,
   FaBuildingColumns,
   FaMapLocationDot,
@@ -84,43 +90,43 @@ const TABS = [
 const CATEGORIES = [
   {
     title: "Day Schools",
-    desc: "Full-time learning",
+    desc: "Full-time day learning",
     icon: FaBuildingColumns,
     bg: "#eaf1fb",
     fg: "#1e4fa3",
   },
   {
     title: "Boarding Schools",
-    desc: "A home away from home",
+    desc: "Live & learn on campus",
     icon: FaBuilding,
     bg: "#fbf3dd",
     fg: "#b8952e",
   },
   {
-    title: "British Curriculum",
-    desc: "IGCSE, A-Levels",
-    icon: FaGlobe,
+    title: "Day Boarding",
+    desc: "Best of both worlds",
+    icon: FaScaleBalanced,
     bg: "#eaf1fb",
     fg: "#1e4fa3",
   },
   {
-    title: "American Curriculum",
-    desc: "US High School Diploma",
-    icon: FaFlag,
+    title: "Play Schools",
+    desc: "Early years & nursery",
+    icon: FaChildren,
     bg: "#fbf3dd",
     fg: "#b8952e",
   },
   {
-    title: "IB Schools",
-    desc: "International Baccalaureate",
-    icon: FaEarthAmericas,
+    title: "Residential Schools",
+    desc: "Full residential care",
+    icon: FaGraduationCap,
     bg: "#eaf1fb",
     fg: "#1e4fa3",
   },
   {
-    title: "Indian Curriculum",
-    desc: "CBSE & ICSE",
-    icon: FaGraduationCap,
+    title: "Special Needs",
+    desc: "Inclusive education",
+    icon: FaHeart,
     bg: "#fbf3dd",
     fg: "#b8952e",
   },
@@ -128,20 +134,32 @@ const CATEGORIES = [
 
 const WHY_POINTS = [
   {
-    title: "Verified Information",
-    text: "Accurate and up-to-date details",
-    icon: FaCircleCheck,
+    title: "Trusted & Verified",
+    text: "Only genuine and verified schools listed",
+    icon: FaGraduationCap,
+    bg: "#e7eefc",
+    fg: "#1e4fa3",
   },
   {
-    title: "Compare Schools",
-    text: "Side by side comparison",
-    icon: FaScaleBalanced,
+    title: "Compare Easily",
+    text: "Compare curriculum, fees, facilities & more",
+    icon: FaMagnifyingGlass,
+    bg: "#fbf1d9",
+    fg: "#c79a2e",
   },
-  { title: "Real Parent Reviews", text: "Honest experiences", icon: FaUsers },
+  {
+    title: "Real Parent Reviews",
+    text: "Get honest feedback from parents",
+    icon: FaUsers,
+    bg: "#dff3ec",
+    fg: "#1a9c78",
+  },
   {
     title: "Expert Guidance",
-    text: "Get help from our education experts",
-    icon: FaHeadset,
+    text: "Our education experts are always here to help",
+    icon: FaHeart,
+    bg: "#fce4ec",
+    fg: "#e0517a",
   },
 ];
 
@@ -212,6 +230,106 @@ const TESTIMONIALS = [
   },
 ];
 
+const BOARDS = [
+  { name: "British", icon: FaGlobe },
+  { name: "American", icon: FaFlag },
+  { name: "IB", icon: FaEarthAmericas },
+  { name: "CBSE", icon: FaGraduationCap },
+  { name: "ICSE", icon: FaBuildingColumns },
+  { name: "IGCSE", icon: FaGlobe },
+];
+
+const STEPS = [
+  {
+    icon: FaMagnifyingGlass,
+    title: "Search Schools",
+    text: "Filter by area, curriculum, fees and facilities to find the right fit.",
+  },
+  {
+    icon: FaScaleBalanced,
+    title: "Compare",
+    text: "See schools side by side — fees, ratings and real parent reviews.",
+  },
+  {
+    icon: FaHeadset,
+    title: "Enquire",
+    text: "Request details or a free callback from our expert counsellors.",
+  },
+  {
+    icon: FaGraduationCap,
+    title: "Get Admission",
+    text: "We guide you through the admission process, start to finish.",
+  },
+];
+
+const TRENDING = [
+  {
+    name: "GEMS Wellington International School",
+    area: "Al Sufouh, Dubai",
+    curriculum: "British",
+    rating: "4.8",
+    img: "/day-school.avif",
+  },
+  {
+    name: "Dubai International Academy",
+    area: "Emirates Hills, Dubai",
+    curriculum: "IB",
+    rating: "4.7",
+    img: "/boarding-school.avif",
+  },
+  {
+    name: "Jumeirah English Speaking School",
+    area: "Jumeirah, Dubai",
+    curriculum: "British",
+    rating: "4.6",
+    img: "/day-boarding.avif",
+  },
+  {
+    name: "American School of Dubai",
+    area: "Al Barsha, Dubai",
+    curriculum: "American",
+    rating: "4.5",
+    img: "/about.png",
+  },
+  {
+    name: "Delhi Private School",
+    area: "Al Quoz, Dubai",
+    curriculum: "CBSE",
+    rating: "4.5",
+    img: "/play-school.avif",
+  },
+  {
+    name: "Repton School Dubai",
+    area: "Nad Al Sheba, Dubai",
+    curriculum: "British",
+    rating: "4.7",
+    img: "/boarding-school.avif",
+  },
+];
+
+const FAQS = [
+  {
+    q: "Is Education Portal free for parents?",
+    a: "Yes — searching, comparing and requesting admission help is completely free for parents. We never charge you.",
+  },
+  {
+    q: "How do I find the right school for my child?",
+    a: "Use the search and filters (area, curriculum, fees, facilities) to shortlist schools, compare them side by side, then request details or a callback.",
+  },
+  {
+    q: "Can you help with the admission process?",
+    a: "Absolutely. Leave your details in Get Admission Help and our counsellors will guide you from shortlisting to final admission.",
+  },
+  {
+    q: "Are the schools and information verified?",
+    a: "Yes. Every listed school and its information is verified and kept up to date, so you can decide with confidence.",
+  },
+  {
+    q: "Which curriculums are covered?",
+    a: "British, American, IB, CBSE, ICSE, IGCSE and more — across all major areas of Dubai.",
+  },
+];
+
 const HomeRedesign: React.FC = () => {
   const router = useRouter();
   const [tab, setTab] = useState("find");
@@ -219,6 +337,38 @@ const HomeRedesign: React.FC = () => {
   const [curriculum, setCurriculum] = useState("");
   const [area, setArea] = useState("");
   const [fees, setFees] = useState("");
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [trending, setTrending] = useState<any[]>([]);
+  const [trLoading, setTrLoading] = useState(true);
+  const scrollTrending = (dir: number) =>
+    trackRef.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
+
+  useEffect(() => {
+    getAllSchools({})
+      .then((res) => {
+        const list = res?.data?.schools;
+        if (list && list.length) {
+          setTrending(
+            list.slice(0, 8).map((s: any) => ({
+              name: s.name,
+              area: s.city?.city ? `${s.city.city}, Dubai` : "Dubai",
+              curriculum: s.schoolBoards?.[0]?.name ?? "School",
+              rating: s.avgRating ? s.avgRating.toFixed(1) : "New",
+              img:
+                s.images?.[0] && s.images[0].startsWith("http")
+                  ? s.images[0]
+                  : "/day-school.avif",
+              slug: s.slug,
+            })),
+          );
+        } else {
+          setTrending(TRENDING);
+        }
+      })
+      .catch(() => setTrending(TRENDING))
+      .finally(() => setTrLoading(false));
+  }, []);
 
   const onSearch = () => {
     const params = new URLSearchParams();
@@ -288,7 +438,7 @@ const HomeRedesign: React.FC = () => {
 
       {/* ========================== SEARCH CARD ========================== */}
       <div className={`relative z-30 ${CONTAINER} -mt-16 md:-mt-20 pb-4`}>
-        <div className="bg-white rounded-xl shadow-[0_10px_35px_rgba(15,35,70,0.16)] border border-white overflow-hidden">
+        <div className="overflow-hidden rounded-2xl border-x border-b-0 border-t-[3px] border-x-[#e6ecf5] border-t-[#1e4fa3] bg-white shadow-[0_18px_45px_-15px_rgba(15,35,70,0.28)]">
           {/* ================= TABS ================= */}
           <div className="flex items-center gap-1 px-3 pt-3 pb-2 border-b border-gray-100">
             {TABS.map((t) => (
@@ -303,7 +453,7 @@ const HomeRedesign: React.FC = () => {
                 }}
                 className={`
             inline-flex items-center gap-2
-            rounded-lg
+            rounded-full
             px-4 py-2
             text-[13px]
             font-semibold
@@ -311,8 +461,8 @@ const HomeRedesign: React.FC = () => {
             whitespace-nowrap
             ${
               tab === t.key
-                ? "bg-[#17458f] text-white shadow-sm"
-                : "text-[#263b5f] hover:bg-[#f1f5fb]"
+                ? "bg-[#17458f] text-white shadow-[0_6px_16px_-6px_rgba(23,69,143,0.7)]"
+                : "border border-[#d5deec] bg-white text-[#41527a] hover:border-[#17458f] hover:text-[#17458f]"
             }
           `}
               >
@@ -324,201 +474,78 @@ const HomeRedesign: React.FC = () => {
 
           {/* ================= FILTERS ================= */}
           <div className="px-4 md:px-5 pt-3 pb-2">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_auto]">
               {/* School Type */}
               <div>
-                <label className="block mb-1 text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
                   School Type
                 </label>
-
-                <select
+                <Picker
+                  icon={FaBuildingColumns}
                   value={type}
-                  onChange={(e) => setType(e.target.value)}
-                  className="
-              h-10
-              w-full
-              rounded-lg
-              border border-[#e1e6ee]
-              bg-white
-              px-3
-              text-[13px]
-              text-[#132d57]
-              outline-none
-              appearance-none
-              cursor-pointer
-              transition
-              focus:border-[#17458f]
-              focus:ring-2
-              focus:ring-[#17458f]/10
-            "
-                >
-                  <option value="">Select type</option>
-
-                  {SCHOOL_TYPES.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setType}
+                  options={SCHOOL_TYPES}
+                  placeholder="Select type"
+                />
               </div>
-
               {/* Curriculum */}
               <div>
-                <label className="block mb-1 text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
                   Curriculum
                 </label>
-
-                <select
+                <Picker
+                  icon={FaGlobe}
                   value={curriculum}
-                  onChange={(e) => setCurriculum(e.target.value)}
-                  className="
-              h-10
-              w-full
-              rounded-lg
-              border border-[#e1e6ee]
-              bg-white
-              px-3
-              text-[13px]
-              text-[#132d57]
-              outline-none
-              appearance-none
-              cursor-pointer
-              transition
-              focus:border-[#17458f]
-              focus:ring-2
-              focus:ring-[#17458f]/10
-            "
-                >
-                  <option value="">Select curriculum</option>
-
-                  {CURRICULA.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setCurriculum}
+                  options={CURRICULA}
+                  placeholder="Select curriculum"
+                />
               </div>
-
               {/* Area */}
               <div>
-                <label className="block mb-1 text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
                   Area
                 </label>
-
-                <select
+                <Picker
+                  icon={FaLocationDot}
                   value={area}
-                  onChange={(e) => setArea(e.target.value)}
-                  className="
-              h-10
-              w-full
-              rounded-lg
-              border border-[#e1e6ee]
-              bg-white
-              px-3
-              text-[13px]
-              text-[#132d57]
-              outline-none
-              appearance-none
-              cursor-pointer
-              transition
-              focus:border-[#17458f]
-              focus:ring-2
-              focus:ring-[#17458f]/10
-            "
-                >
-                  <option value="">Select area</option>
-
-                  {AREAS.map((a) => (
-                    <option key={a} value={a}>
-                      {a}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setArea}
+                  options={AREAS}
+                  placeholder="Select area"
+                />
               </div>
-
               {/* Fees */}
               <div>
-                <label className="block mb-1 text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
                   Fees Range
                 </label>
-
-                <select
+                <Picker
+                  icon={FaTag}
                   value={fees}
-                  onChange={(e) => setFees(e.target.value)}
-                  className="
-              h-10
-              w-full
-              rounded-lg
-              border border-[#e1e6ee]
-              bg-white
-              px-3
-              text-[13px]
-              text-[#132d57]
-              outline-none
-              appearance-none
-              cursor-pointer
-              transition
-              focus:border-[#17458f]
-              focus:ring-2
-              focus:ring-[#17458f]/10
-            "
-                >
-                  <option value="">Any range</option>
-
-                  {FEES.map((f) => (
-                    <option key={f} value={f}>
-                      {f}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setFees}
+                  options={FEES}
+                  placeholder="Any range"
+                />
               </div>
-
               {/* Search Button */}
               <div className="flex items-end">
                 <button
                   onClick={onSearch}
-                  className="
-              h-10
-              w-full
-              lg:w-auto
-              min-w-[145px]
-              inline-flex
-              items-center
-              justify-center
-              gap-2
-              rounded-lg
-              bg-[#17458f]
-              hover:bg-[#123a78]
-              px-5
-              text-[13px]
-              font-bold
-              text-white
-              shadow-sm
-              transition-all
-              whitespace-nowrap
-            "
+                  className="inline-flex h-11 w-full min-w-[150px] items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#173e82] to-[#17458f] px-5 text-[13px] font-bold text-white shadow-[0_10px_25px_-8px_rgba(23,69,143,0.6)] transition-all hover:opacity-95 lg:w-auto"
                 >
-                  Search Schools
-                  <FaArrowRight className="text-[11px]" />
+                  Search Schools <FaArrowRight className="text-[11px]" />
                 </button>
               </div>
             </div>
 
             {/* ================= POPULAR SEARCHES ================= */}
-            <div className="mt-2.5 flex items-center gap-2 flex-wrap text-[12px]">
-              <span className="text-[#8a96a8] font-medium">Popular:</span>
-
+            <div className="mt-3 -mx-4 -mb-2 flex flex-wrap items-center gap-2 border-t border-[#eef2f8] bg-[#f7faff] px-4 py-3 text-[12px] md:-mx-5 md:px-5">
+              <span className="font-semibold text-[#8a96a8]">Popular:</span>
               {POPULAR.map((p) => (
                 <button
                   key={p}
                   onClick={() => router.push("/schools")}
-                  className="
-              text-[#17458f]
-              hover:text-[#b8952e]
-              font-medium
-              transition-colors
-              whitespace-nowrap
-            "
+                  className="whitespace-nowrap rounded-full border border-[#dbe4f2] bg-white px-3 py-1 font-medium text-[#41527a] transition-colors hover:border-[#17458f] hover:bg-[#17458f] hover:text-white"
                 >
                   {p}
                 </button>
@@ -533,7 +560,7 @@ const HomeRedesign: React.FC = () => {
         <div className={`${CONTAINER} py-14`}>
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold mb-2">
+              <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
                 Explore Top Categories
               </p>
               <h2 className="text-2xl md:text-3xl font-extrabold text-blacky-light">
@@ -579,13 +606,46 @@ const HomeRedesign: React.FC = () => {
         </div>
       </section>
 
+      {/* ===================== CURRICULUM STRIP ===================== */}
+      <section className="bg-white">
+        <div className={`${CONTAINER} py-12`}>
+          <div className="mb-6 text-center">
+            <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+              Explore by Curriculum
+            </p>
+            <h2 className="text-2xl font-extrabold text-blacky-light md:text-3xl">
+              Find Schools by Board
+            </h2>
+          </div>
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+            {BOARDS.map((b) => (
+              <Link
+                key={b.name}
+                href="/schools"
+                className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-100 bg-white p-4 shadow-light transition-all hover:-translate-y-1 hover:shadow-spread"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4fb] text-xl text-green-600 transition-colors group-hover:bg-green-600 group-hover:text-white">
+                  <b.icon />
+                </span>
+                <span className="text-sm font-bold text-blacky-light">
+                  {b.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ======================= FEATURED SCHOOLS ======================= */}
       <section className="bg-white">
         <div className={`${CONTAINER} py-14`}>
+          <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+            SPOTLIGHT SCHOOLS
+          </p>
           <h2 className="text-2xl md:text-3xl font-extrabold text-blacky-light">
             Featured Schools in Dubai
           </h2>
-          <p className="text-sm text-gold mt-1 mb-8">
+          <p className="text-sm text-blacky-light mt-1 mb-8">
             Discover some of the top-rated schools across Dubai.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -649,57 +709,176 @@ const HomeRedesign: React.FC = () => {
         </div>
       </section>
 
+      {/* ===================== HOW IT WORKS ===================== */}
+      <section className="bg-[#eef4fb]">
+        <div className={`${CONTAINER} py-16`}>
+          <div className="mb-10 text-center">
+            <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+              How It Works
+            </p>
+            <h2 className="text-2xl font-extrabold text-blacky-light md:text-3xl">
+              Find the Right School in 4 Simple Steps
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {STEPS.map((s, i) => (
+              <div
+                key={s.title}
+                className="relative rounded-2xl bg-white p-6 text-center shadow-light"
+              >
+                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-green-600/10 text-2xl text-green-600">
+                  <s.icon />
+                </span>
+                <span className="absolute right-4 top-3 text-3xl font-extrabold text-[#e7eefc]">
+                  {i + 1}
+                </span>
+                <p className="mt-4 text-base font-bold text-blacky-light">
+                  {s.title}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-blacky-light/60">
+                  {s.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== TRENDING CAROUSEL ===================== */}
+      <section className="bg-[#eef4fb]">
+        <div className={`${CONTAINER} py-14`}>
+          <div className="mb-6 flex items-end justify-between">
+            <div>
+              <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+                Trending Now
+              </p>
+              <h2 className="text-2xl font-extrabold text-blacky-light md:text-3xl">
+                Popular Schools This Week
+              </h2>
+            </div>
+            <div className="hidden gap-2 sm:flex">
+              <button
+                onClick={() => scrollTrending(-1)}
+                aria-label="Previous"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-blacky-light/70 transition hover:bg-green-600 hover:text-white"
+              >
+                <FaChevronLeft className="text-xs" />
+              </button>
+              <button
+                onClick={() => scrollTrending(1)}
+                aria-label="Next"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-blacky-light/70 transition hover:bg-green-600 hover:text-white"
+              >
+                <FaChevronRight className="text-xs" />
+              </button>
+            </div>
+          </div>
+          <div
+            ref={trackRef}
+            className="flex snap-x gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {trLoading
+              ? Array.from({ length: 5 }).map((_, i) => (
+                  <SchoolCardSkeleton key={i} width="w-[260px] shrink-0" />
+                ))
+              : trending.map((s: any) => (
+              <div
+                key={s.name}
+                className="w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-light"
+              >
+                <div className="relative h-36 overflow-hidden">
+                  <img
+                    src={s.img}
+                    alt={s.name}
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="absolute left-3 top-3 rounded-md bg-gold px-2 py-1 text-[10px] font-bold text-white">
+                    Trending
+                  </span>
+                </div>
+                <div className="p-4">
+                  <h3 className="min-h-[40px] text-sm font-bold leading-snug text-blacky-light">
+                    {s.name}
+                  </h3>
+                  <p className="mt-1 flex items-center gap-1 text-xs text-blacky-light/60">
+                    <FaLocationDot className="text-green-500" /> {s.area}
+                  </p>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="rounded-md bg-[#eef4fb] px-2 py-1 text-[11px] font-medium text-green-600">
+                      {s.curriculum}
+                    </span>
+                    <span className="flex items-center gap-1 text-xs font-bold text-blacky-light">
+                      <FaStar className="text-gold" /> {s.rating}
+                    </span>
+                  </div>
+                  <Link
+                    href={s.slug ? `/school/${s.slug}` : "/schools"}
+                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-green-600 py-2 text-xs font-semibold text-green-600 transition-colors hover:bg-green-600 hover:text-white"
+                  >
+                    View Details <FaArrowRight className="text-[10px]" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ========================== WHY CHOOSE ========================== */}
-      <section className="bg-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#f5f9ff] to-white">
         <div
-          className={`${CONTAINER} py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center`}
+          className={`${CONTAINER} py-16 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.12fr_0.88fr]`}
         >
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-500 mb-2">
-              Why Choose {SITE_NAME}
+            <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+              Why {SITE_NAME}
             </p>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-blacky-light leading-snug">
-              Making School Search <br /> Simple, Transparent &amp; Trusted
+            <h2 className="text-3xl font-extrabold leading-[1.1] text-blacky-light md:text-[40px]">
+              Your Child&apos;s <span className="text-gold">Brighter</span>{" "}
+              <br className="hidden sm:block" />
+              Future Starts Here
             </h2>
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <p className="mt-4 max-w-lg text-sm text-blacky-light/65 md:text-base">
+              We connect parents with the best schools in Dubai, making the
+              search process simple, transparent and stress-free.
+            </p>
+
+            <div className="mt-8 grid grid-cols-2 gap-4">
               {WHY_POINTS.map((p) => (
-                <div key={p.title} className="flex items-start gap-3">
-                  <span className="h-11 w-11 shrink-0 rounded-full bg-green-600/10 text-green-600 flex items-center justify-center text-lg">
+                <div
+                  key={p.title}
+                  className="rounded-2xl border border-gray-100 bg-white p-5 shadow-[0_12px_30px_-16px_rgba(15,35,70,0.28)] transition-transform hover:-translate-y-1"
+                >
+                  <span
+                    className="flex h-11 w-11 items-center justify-center rounded-xl text-lg"
+                    style={{ backgroundColor: p.bg, color: p.fg }}
+                  >
                     <p.icon />
                   </span>
-                  <div>
-                    <p className="text-sm font-bold text-blacky-light">
-                      {p.title}
-                    </p>
-                    <p className="text-xs text-blacky-light/60">{p.text}</p>
-                  </div>
+                  <p className="mt-3 text-sm font-bold text-blacky-light">
+                    {p.title}
+                  </p>
+                  <p className="mt-1 text-[12px] leading-snug text-blacky-light/60">
+                    {p.text}
+                  </p>
                 </div>
               ))}
             </div>
-            <Link
-              href="/about"
-              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-green-600 hover:bg-green-500 px-6 py-3 text-sm font-semibold text-white transition-colors"
-            >
-              Learn More About Us <FaArrowRight />
-            </Link>
           </div>
+
+          {/* photo with handwritten accents */}
           <div className="relative">
             <img
-              src="/about.png"
-              alt="Choosing the right school in Dubai"
-              className="w-full h-[320px] object-cover rounded-2xl"
+              src="/images/banner-home.jpeg"
+              alt="A brighter future for your child in Dubai"
+              className="h-[360px] w-full rounded-3xl object-cover shadow-[0_25px_60px_-25px_rgba(15,35,70,0.45)] lg:h-[440px]"
             />
-            <div className="absolute bottom-4 right-4 bg-white rounded-xl shadow-spread px-4 py-3 flex items-center gap-2">
-              <FaStar className="text-gold text-xl" />
-              <div className="leading-none">
-                <p className="text-lg font-extrabold text-blacky-light">
-                  4.8/5
-                </p>
-                <p className="text-[11px] text-blacky-light/60">
-                  Parent Satisfaction
-                </p>
-              </div>
-            </div>
+            <span className="pointer-events-none absolute right-4 top-5 max-w-[150px] -rotate-6 text-right font-serif text-base italic leading-tight text-white drop-shadow">
+              Great Schools Brighter Futures
+            </span>
+            <span className="pointer-events-none absolute bottom-4 right-4 max-w-[180px] rotate-2 rounded-xl bg-white/85 px-3 py-2 text-right font-serif text-[13px] italic leading-tight text-[#e08a2b] backdrop-blur">
+              A Better Tomorrow Begins with the Right Education
+            </span>
           </div>
         </div>
       </section>
@@ -831,6 +1010,96 @@ const HomeRedesign: React.FC = () => {
         </div>
       </section>
 
+      {/* ===================== FAQ ===================== */}
+      <section className="bg-white">
+        <div
+          className={`${CONTAINER} grid grid-cols-1 gap-10 py-16 lg:grid-cols-[0.85fr_1.15fr]`}
+        >
+          <div>
+            <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+              FAQ
+            </p>
+            <h2 className="text-2xl font-extrabold leading-snug text-blacky-light md:text-3xl">
+              Frequently Asked <span className="text-gold">Questions</span>
+            </h2>
+            <p className="mt-3 max-w-sm text-sm text-blacky-light/60">
+              Everything parents usually ask before choosing a school in Dubai.
+              Still unsure? Our team is here for you.
+            </p>
+            <div className="relative mt-6 overflow-hidden rounded-2xl bg-gradient-to-br from-[#173e82] to-green-600 p-6 text-white">
+              <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gold/20 blur-2xl" />
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-xl text-gold">
+                <FaHeadset />
+              </span>
+              <p className="mt-4 text-lg font-extrabold">
+                Still have questions?
+              </p>
+              <p className="mt-1 text-sm text-white/80">
+                Talk to our counsellors — free, no pressure.
+              </p>
+              <a
+                href="#get-admission-help"
+                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-2.5 text-sm font-bold text-blacky-light transition hover:opacity-90"
+              >
+                Ask Our Experts <FaArrowRight className="text-[11px]" />
+              </a>
+            </div>
+          </div>
+          <div className="space-y-3">
+            {FAQS.map((f, i) => {
+              const open = openFaq === i;
+              return (
+                <div
+                  key={f.q}
+                  className={`overflow-hidden rounded-2xl border transition-all ${
+                    open
+                      ? "border-green-600 bg-white shadow-spread"
+                      : "border-gray-100 bg-[#f8fbff]"
+                  }`}
+                >
+                  <button
+                    onClick={() => setOpenFaq(open ? null : i)}
+                    className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
+                  >
+                    <span
+                      className={`text-sm font-bold ${
+                        open ? "text-green-600" : "text-blacky-light"
+                      }`}
+                    >
+                      {f.q}
+                    </span>
+                    <span
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all ${
+                        open
+                          ? "bg-green-600 text-white"
+                          : "bg-green-600/10 text-green-600"
+                      }`}
+                    >
+                      <FaChevronDown
+                        className={`text-[10px] transition-transform ${
+                          open ? "rotate-180" : ""
+                        }`}
+                      />
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ${
+                      open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="px-5 pb-4 text-sm leading-relaxed text-blacky-light/65">
+                        {f.a}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ===================== EXPLORE BY AREA ===================== */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#123a78] via-green-600 to-green-500" />
@@ -843,7 +1112,7 @@ const HomeRedesign: React.FC = () => {
         >
           {/* left: heading + area cards */}
           <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-gold">
+            <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
               Explore by Location
             </p>
             <h2 className="text-2xl font-extrabold md:text-3xl">

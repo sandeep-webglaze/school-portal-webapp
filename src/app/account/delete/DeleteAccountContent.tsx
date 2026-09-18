@@ -20,9 +20,9 @@ const DeleteAccountContent = () => {
         />
         <p className="mx-auto mt-4 max-w-lg text-justify text-gray-500">
           We have successfully received your request for the deletion of your
-          account with Edhippo Academy. Our team is currently processing your
-          request, and your account will be removed from our system with in 30
-          days.
+          account with Education Portal Academy. Our team is currently
+          processing your request, and your account will be removed from our
+          system with in 30 days.
         </p>
         <p className="mx-auto mt-4 max-w-lg text-justify text-gray-500">
           Please note that for security and data protection reasons, we kindly
@@ -82,7 +82,7 @@ const DeleteAccountContent = () => {
     } catch (error) {
       toast.error(
         (error as ErrorResponseSchema).error?.displayMessage ??
-          "Something Went Wrong!"
+          "Something Went Wrong!",
       );
     } finally {
       setLoading(false);

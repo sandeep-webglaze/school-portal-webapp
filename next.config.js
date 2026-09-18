@@ -21,11 +21,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.edhippo.com",
+        hostname: "api.Education Portal.com",
       },
       {
         protocol: "https",
-        hostname: "cdn.edhippo.com",
+        hostname: "cdn.Education Portal.com",
       },
       {
         protocol: "https",

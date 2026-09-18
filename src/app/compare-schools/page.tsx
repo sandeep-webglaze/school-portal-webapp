@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   // Description: trimmed from 159 to 152 chars so the Detailed extension
   // doesn't flag it as borderline. Primary keyword still in first 30 chars.
   description:
-    "Compare schools side by side on academics, facilities, fees, board & location — make an informed decision for your child's education on EdHippo.",
+    "Compare schools side by side on academics, facilities, fees, board & location — make an informed decision for your child's education on Education Portal.",
   keywords: [
     "compare schools India",
     "school comparison tool",
@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     "side by side school comparison",
     "school vs school India",
     "best schools comparison",
-    "EdHippo school comparison",
+    "Education Portal school comparison",
   ],
   alternates: { canonical: "/compare-schools" },
   openGraph: {
-    title: "Compare Schools — EdHippo Academy",
+    title: "Compare Schools — Education Portal Academy",
     description:
       "Side-by-side comparison of schools across India. Find the best fit for your child.",
     url: "/compare-schools",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Compare Schools — EdHippo Academy",
+    title: "Compare Schools — Education Portal Academy",
     description:
       "Side-by-side comparison of schools across India. Find the best fit for your child.",
   },

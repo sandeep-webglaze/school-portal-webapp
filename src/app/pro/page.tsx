@@ -282,7 +282,7 @@ import type { Metadata } from "next";
 // /pro is a stub at the moment — keep it out of Google's index until the
 // real content ships. Remove `robots.index = false` once this page is live.
 export const metadata: Metadata = {
-  title: "EdHippo Pro",
+  title: "Education Portal Pro",
   robots: { index: false, follow: false },
   alternates: { canonical: "/pro" },
 };

@@ -26,12 +26,12 @@ import { safeCall } from "@/helpers/safeAsync";
 
 const RequestCallBack = dynamic(
   () => import("@/components/RequestCalback/component"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export async function generateMetadata(
   { params, searchParams }: any,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const slug = params.slug;
 
@@ -39,7 +39,7 @@ export async function generateMetadata(
   // for our fallback title/description generators (so when admin meta is
   // missing or too short, we still ship a unique, keyword-rich title built
   // from the school's name + city + board instead of leaking the layout
-  // default like "EdHippo Academy | Find Top Boarding Schools in India").
+  // default like "Education Portal Academy | Find Top Boarding Schools in India").
   // That layout-default leak was the single cause of the 42 "duplicate
   // title" warnings in Screaming Frog.
   // safeCall around both — backend can be down, return non-JSON, etc.
@@ -108,8 +108,7 @@ export async function generateMetadata(
     },
     openGraph: {
       ...(safeAdminMeta.openGraph ?? {}),
-      title:
-        (safeAdminMeta.openGraph as any)?.title || finalTitle,
+      title: (safeAdminMeta.openGraph as any)?.title || finalTitle,
       description:
         (safeAdminMeta.openGraph as any)?.description || finalDescription,
       url: canonicalPath,
@@ -117,8 +116,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        (safeAdminMeta.twitter as any)?.title || finalTitle,
+      title: (safeAdminMeta.twitter as any)?.title || finalTitle,
       description:
         (safeAdminMeta.twitter as any)?.description || finalDescription,
     },
@@ -250,7 +248,7 @@ const SchoolDetail = async ({ params }: { params: { slug: string } }) => {
   const adminHasFaq =
     Array.isArray(schemas) &&
     schemas.some(
-      (s: any) => s && (s["@type"] === "FAQPage" || s?.type === "FAQPage")
+      (s: any) => s && (s["@type"] === "FAQPage" || s?.type === "FAQPage"),
     );
 
   const cityName = school.data.city?.city
@@ -258,7 +256,10 @@ const SchoolDetail = async ({ params }: { params: { slug: string } }) => {
     : "your city";
   const boardNames =
     Array.isArray(school.data.schoolBoards) && school.data.schoolBoards.length
-      ? school.data.schoolBoards.map((b: any) => b?.name).filter(Boolean).join(", ")
+      ? school.data.schoolBoards
+          .map((b: any) => b?.name)
+          .filter(Boolean)
+          .join(", ")
       : "CBSE, ICSE & State Board";
 
   // Admin-managed structured FAQ on the school's slug record wins. Each
@@ -266,14 +267,14 @@ const SchoolDetail = async ({ params }: { params: { slug: string } }) => {
   // editor used for combination slugs; those drive both the FAQPage JSON-LD
   // and the visible accordion on this page.
   const adminSchoolFaqs: FaqItem[] = Array.isArray(school.data?.slug?.faqs)
-    ? school.data!.slug!.faqs!
-        .filter(
+    ? school
+        .data!.slug!.faqs!.filter(
           (f: any) =>
             f &&
             typeof f.question === "string" &&
             typeof f.answer === "string" &&
             f.question.trim().length > 0 &&
-            f.answer.trim().length > 0
+            f.answer.trim().length > 0,
         )
         .map((f: any) => ({
           question: f.question.trim(),
@@ -285,32 +286,33 @@ const SchoolDetail = async ({ params }: { params: { slug: string } }) => {
   // already shipped (legacy path; we skip the visible accordion to avoid
   // duplicate FAQPage entries) → auto-generated school FAQ as a final
   // fallback so existing schools with no admin FAQ data never render blank.
-  const schoolFaqs: FaqItem[] = adminSchoolFaqs.length > 0
-    ? adminSchoolFaqs
-    : adminHasFaq
-    ? []
-    : [
-        {
-          question: `Where is ${schoolName} located?`,
-          answer: `${schoolName} is located in ${cityName}. You can see the full address, contact details and a Google Maps location on this page above — and request a callback to confirm directions before visiting the campus.`,
-        },
-        {
-          question: `Which board is followed at ${schoolName}?`,
-          answer: `${schoolName} is affiliated with ${boardNames}. EdHippo verifies each school's affiliation before listing, so the board information you see here is the latest reported by the school.`,
-        },
-        {
-          question: `How can I apply for admission at ${schoolName}?`,
-          answer: `Click the "Request Callback" or "Enquire Now" button on this page. An EdHippo admission counsellor will contact you within 24 hours to walk you through the admission process, eligibility, dates and required documents — completely free of cost.`,
-        },
-        {
-          question: `What are the fees at ${schoolName}?`,
-          answer: `Fee details vary by grade and stream. The latest fee structure reported for ${schoolName} is shown on this page — for the most up-to-date and grade-wise breakdown, request a callback and our team will share the official fee structure from the school.`,
-        },
-        {
-          question: `Are reviews of ${schoolName} on EdHippo verified?`,
-          answer: `Yes. Every review on EdHippo is tied to a verified parent account and moderated before publication. Ratings shown for ${schoolName} cover academics, admissions, infrastructure and extracurriculars so you get a balanced view before deciding.`,
-        },
-      ];
+  const schoolFaqs: FaqItem[] =
+    adminSchoolFaqs.length > 0
+      ? adminSchoolFaqs
+      : adminHasFaq
+        ? []
+        : [
+            {
+              question: `Where is ${schoolName} located?`,
+              answer: `${schoolName} is located in ${cityName}. You can see the full address, contact details and a Google Maps location on this page above — and request a callback to confirm directions before visiting the campus.`,
+            },
+            {
+              question: `Which board is followed at ${schoolName}?`,
+              answer: `${schoolName} is affiliated with ${boardNames}. Education Portal verifies each school's affiliation before listing, so the board information you see here is the latest reported by the school.`,
+            },
+            {
+              question: `How can I apply for admission at ${schoolName}?`,
+              answer: `Click the "Request Callback" or "Enquire Now" button on this page. An Education Portal admission counsellor will contact you within 24 hours to walk you through the admission process, eligibility, dates and required documents — completely free of cost.`,
+            },
+            {
+              question: `What are the fees at ${schoolName}?`,
+              answer: `Fee details vary by grade and stream. The latest fee structure reported for ${schoolName} is shown on this page — for the most up-to-date and grade-wise breakdown, request a callback and our team will share the official fee structure from the school.`,
+            },
+            {
+              question: `Are reviews of ${schoolName} on Education Portal verified?`,
+              answer: `Yes. Every review on Education Portal is tied to a verified parent account and moderated before publication. Ratings shown for ${schoolName} cover academics, admissions, infrastructure and extracurriculars so you get a balanced view before deciding.`,
+            },
+          ];
 
   return (
     <Fragment>

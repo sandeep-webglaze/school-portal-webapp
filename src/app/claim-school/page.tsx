@@ -7,20 +7,20 @@ export const metadata: Metadata = {
   title: "Claim Your School — Manage & Enhance Your Profile",
   // Description: 145 chars — already good.
   description:
-    "Claim your school's listing on EdHippo Academy. Manage your profile, respond to enquiries, and showcase your strengths to thousands of parents.",
+    "Claim your school's listing on Education Portal Academy. Manage your profile, respond to enquiries, and showcase your strengths to thousands of parents.",
   keywords: [
-    "claim my school EdHippo",
+    "claim my school Education Portal",
     "school profile management",
     "claim school listing India",
-    "school owner login EdHippo",
+    "school owner login Education Portal",
     "manage school profile online",
     "respond to parent enquiries",
     "school admin dashboard India",
-    "EdHippo school verification",
+    "Education Portal school verification",
   ],
   alternates: { canonical: "/claim-school" },
   openGraph: {
-    title: "Claim Your School on EdHippo — Manage Your Listing",
+    title: "Claim Your School on Education Portal — Manage Your Listing",
     description:
       "Take ownership of your school's profile and connect directly with interested parents.",
     url: "/claim-school",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Claim Your School on EdHippo — Manage Your Listing",
+    title: "Claim Your School on Education Portal — Manage Your Listing",
     description:
       "Take ownership of your school's profile and connect directly with interested parents.",
   },
