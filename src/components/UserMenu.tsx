@@ -38,15 +38,15 @@ const UserMenu: React.FC<UserMenuProps> = () => {
           className="
           md:py-1
           md:px-2
-          border-[1px] 
-          border-neutral-200 
-          flex 
-          flex-row 
-          items-center 
-          gap-3 
-          rounded-full 
-          cursor-pointer 
-          hover:shadow-md 
+          border-[1px]
+          border-neutral-200
+          flex
+          flex-row
+          items-center
+          gap-3
+          rounded-full
+          cursor-pointer
+          hover:shadow-md
           transition
           "
         >
@@ -59,16 +59,16 @@ const UserMenu: React.FC<UserMenuProps> = () => {
           <div
             ref={ref as any}
             className="
-            absolute 
+            absolute
             shadow-lg
-            rounded-xl 
+            rounded-xl
             border
             min-w-[150px]
             max-w-max
-            bg-white 
-            overflow-hidden 
-            right-0 
-            top-12 
+            bg-white
+            overflow-hidden
+            right-0
+            top-12
             text-sm
           "
           >
@@ -97,13 +97,14 @@ const UserMenu: React.FC<UserMenuProps> = () => {
         )}
       </div>
     );
+  // Highlighted "Login" pill (bordered → fills on hover)
   return (
     <div
-      className="flex items-center font-normal hover:text-greenish-light cursor-pointer gap-1 text-black hover:underline"
+      className="inline-flex items-center gap-2 rounded-full border-2 border-green-600 px-4 py-2 text-sm font-semibold text-green-600 hover:bg-green-600 hover:text-white cursor-pointer transition-colors"
       onClick={loginModal.onOpen}
     >
-      <CgProfile size={22} className="sm:text-black text-greenish-light" />
-      <p className="hidden sm:flex">Login</p>
+      <CgProfile size={18} />
+      <span>Login</span>
     </div>
   );
 };
@@ -124,9 +125,9 @@ const MenuItem: React.FC<MenuItemProps> = ({ onClick, label, setIsOpen }) => {
         onClick();
       }}
       className="
-        px-4 
-        py-3 
-        hover:bg-grayish-light 
+        px-4
+        py-3
+        hover:bg-grayish-light
         transition
         font-semibold
       "

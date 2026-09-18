@@ -25,7 +25,7 @@ const TopBar = ({ config: _config }: { config?: IAppConfig }) => {
   return (
     <div className="w-full bg-gradient-to-r from-[#0f1b33] via-blacky-light to-[#0f1b33] border-b-2 border-gold/60">
       <div className="max-w-[1450px] mx-auto">
-        <div className="py-[7px] px-3 sm:px-7 lg:px-10 xl:px-14 flex justify-between items-center gap-3">
+        <div className="py-[7px] px-3 sm:px-7 lg:px-10 xl:px-14 flex flex-nowrap justify-between items-center gap-3 whitespace-nowrap overflow-x-auto">
           {/* Left: announcement + contact */}
           <div className="flex items-center gap-4 min-w-0">
             <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-gold/15 text-gold px-3 py-1 text-[12px] font-semibold">

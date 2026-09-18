@@ -9,4 +9,7 @@ export type HeaderProps = {
     // source the Footer uses). Optional so client consumers can still fall
     // back to the Zustand store / hardcoded constants.
     config?: IAppConfig;
+    // When true, the header renders transparent over a dark hero (home page)
+    // and turns solid white on scroll.
+    overlay?: boolean;
 }

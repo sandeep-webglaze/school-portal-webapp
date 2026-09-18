@@ -193,7 +193,7 @@ const SchoolDetail = async ({ params }: { params: { slug: string } }) => {
     url: `${SITE_BASE_URL}/school/${params.slug}`,
     image:
       (Array.isArray(school.data.images) && school.data.images[0]) ||
-      `${SITE_BASE_URL}/images/logo.webp`,
+      `${SITE_BASE_URL}/logo.png`,
     address: {
       "@type": "PostalAddress",
       addressLocality: school.data.city?.city ?? "",

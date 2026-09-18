@@ -1,7 +1,5 @@
 import React from "react";
 import { Container } from "../Container";
-import { Button } from "../Button";
-import { Heading } from "../Heading";
 import Link from "next/link";
 
 const Welcome_Page = () => {

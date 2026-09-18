@@ -122,7 +122,7 @@ const RegisterSchool = () => {
           {/* Left info panel with background image */}
           <div className="relative overflow-hidden p-8 sm:p-10 text-white">
             <img
-              src="/images/banner-home4.jpeg"
+              src="/banner-home.jpeg"
               alt=""
               aria-hidden="true"
               className="absolute inset-0 h-full w-full object-cover"

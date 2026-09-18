@@ -51,7 +51,7 @@ function buildOrganizationSchema(config?: IAppConfig) {
     "@type": "EducationalOrganization",
     name: SITE_NAME,
     url: `${SITE_BASE_URL}/`,
-    logo: `${SITE_BASE_URL}/images/logo.svg`,
+    logo: `${SITE_BASE_URL}/logo.png`,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: config?.contactUs?.phoneNumber || CONTACT_PHONE,
@@ -68,14 +68,15 @@ function buildLocalBusinessSchema(config?: IAppConfig) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: SITE_NAME,
-    image: `${SITE_BASE_URL}/images/logo.svg`,
+    image: `${SITE_BASE_URL}/logo.png`,
     "@id": `${SITE_BASE_URL}/`,
     url: `${SITE_BASE_URL}/`,
     telephone: config?.contactUs?.phoneNumber || CONTACT_PHONE,
     priceRange: "0",
     address: {
       "@type": "PostalAddress",
-      streetAddress: config?.contactUs?.address || "Dubai, United Arab Emirates",
+      streetAddress:
+        config?.contactUs?.address || "Dubai, United Arab Emirates",
       addressLocality: "Dubai",
       addressCountry: "AE",
     },
@@ -86,13 +87,7 @@ function buildLocalBusinessSchema(config?: IAppConfig) {
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-      ],
+      dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
       opens: "09:00",
       closes: "18:00",
     },
@@ -202,7 +197,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const description =
     metaData?.defaultSlugMetaData?.description ?? SITE_DESCRIPTION;
 
-  const defaultOgImage = `${SITE_BASE_URL}/images/logo.svg`;
+  const defaultOgImage = `${SITE_BASE_URL}/logo.png`;
 
   return {
     title: {
@@ -268,8 +263,16 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
-        { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-        { url: "/android-chrome-256x256.png", sizes: "256x256", type: "image/png" },
+        {
+          url: "/android-chrome-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          url: "/android-chrome-256x256.png",
+          sizes: "256x256",
+          type: "image/png",
+        },
       ],
       apple: "/android-chrome-192x192.png",
     },

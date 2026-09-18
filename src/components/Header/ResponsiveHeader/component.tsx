@@ -8,21 +8,20 @@ import TopBar from "../TopBar/component";
 
 type ResponsiveHeaderProps = {
   user: IUser | null;
-  // Threaded from the root layout so the header renders the admin-configured
-  // contact + social details server-side (same config the Footer receives),
-  // instead of relying on the client-only Zustand store which is empty on
-  // first paint / for crawlers.
   config?: IAppConfig;
 };
 const ResponsiveHeader: FC<ResponsiveHeaderProps> = ({ user, config }) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
+  // Top contact bar shows on every page (including home), and the header stays
+  // solid white so the bar is always visible on a single line above it.
   return (
     <Fragment>
       <TopBar config={config} />
       <Header
         user={user}
         config={config}
+        overlay={false}
         navbarOpen={navbarOpen}
         setNavbarOpen={setNavbarOpen}
       />

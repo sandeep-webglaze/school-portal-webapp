@@ -54,7 +54,7 @@ const ClaimSchoolContent = () => {
           <div className="flex flex-col md:flex-row items-center  justify-evenly  ">
             <div>
               <Image
-                src="/images/page-ownership.webp"
+                src="/about.png"
                 width={380}
                 height={380}
                 quality={100}
@@ -106,7 +106,7 @@ const ClaimSchoolContent = () => {
           <div className="flex flex-col md:flex-row items-center  justify-evenly  ">
             <div>
               <Image
-                src="/images/leads.webp"
+                src="/about.png"
                 width={350}
                 height={350}
                 alt={`Verified Leads | ${SITE_NAME}`}

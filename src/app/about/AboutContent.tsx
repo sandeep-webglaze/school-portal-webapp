@@ -87,7 +87,7 @@ const AboutContent = () => {
           </Link>
         </div>
         <img
-          src="/images/about2.avif"
+          src="/about.png"
           alt={`${SITE_NAME} — school discovery in Dubai`}
           className="w-full h-[320px] object-cover rounded-2xl shadow-spread"
         />

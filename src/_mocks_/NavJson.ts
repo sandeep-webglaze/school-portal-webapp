@@ -23,8 +23,9 @@ type NavItem = {
 export const navList: NavItem[] = [
   { title: "Home", path: "/", icon: HiMiniHome },
   { title: "Schools", path: "/schools" },
-  { title: "Register School", path: "/register-school" },
+  { title: "Guides", path: "/schools" },
   { title: "About Us", path: "/about" },
+  { title: "Contact", path: "/contact-us" },
 ];
 
 // NOTE: intentionally ignores the API config so no EdHippo social links from

@@ -1,8 +1,8 @@
 export const LOCAL_IP_HOST = "http://192.168.1.38:8080";
 export const LOCAL_SERVER_HOST = "http://localhost:8080";
 
-// Fallback used only for local development when NEXT_PUBLIC_API_HOST is not set.
-export const PRODUCTION_SERVER = "http://localhost:8080";
+export const PRODUCTION_SERVER =
+  "https://school-portal-backend-wt5b.onrender.com";
 
 // API + image hosts come from environment variables so you set the deployed
 // backend URL once in your host (Vercel / Render), not in code.
