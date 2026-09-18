@@ -21,7 +21,7 @@ const Contact = () => {
 
   return (
     <Fragment>
-      <div className='bg-[url("/images/contact-us.avif")] bg-no-repeat bg-cover bg-right md:bg-center '>
+      <div className='bg-[url("/about.png")] bg-no-repeat bg-cover bg-right md:bg-center '>
         <Container bgColor="px-4  flex  items-center sm:px-8 lg:px-10 pt-10 md:pt-20 max-w-screen lg:w-screen md:h-[450px]  h-[250px] lg:h-[45vh]  ">
           <div className=" p-2 lg:p-6 max-w-sm lg:max-w-lg xl:max-w-2xl  ">
             {/* H1 was "Contact Us" (10 chars) — too short for SEO. Expanded

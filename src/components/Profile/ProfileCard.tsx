@@ -69,7 +69,7 @@ export function Profilecard() {
           <div className="block relative rounded-full border max-h-16 max-w-16">
             <Image
               alt="profile"
-              src={user?.imageUrl ?? "/images/placeholder.webp"}
+              src={user?.imageUrl ?? "/about.png"}
               width={64}
               height={64}
               className=" object-cover rounded-full "

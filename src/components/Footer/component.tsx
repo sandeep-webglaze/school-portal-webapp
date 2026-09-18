@@ -40,7 +40,7 @@ export function Footer({ config: _config }: { config?: IAppConfig }) {
               <div className="flex flex-col lg:w-max gap-4">
                 <Link href={"/"} className="flex items-center gap-2">
                   <Image
-                    src={"/images/logo.svg"}
+                    src={"/logo.png"}
                     alt={SITE_NAME}
                     width={44}
                     height={44}

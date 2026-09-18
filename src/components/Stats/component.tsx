@@ -6,7 +6,7 @@ const StatsCounter = () => {
   return (
     <div
       className="mx-auto text-white py-2 bg-green-500"
-      style={{ backgroundImage: "url(/images/greenBgPattern.webp)" }}
+      style={{ backgroundImage: "url(/about.png)" }}
     >
       <div
         role="list"
@@ -16,7 +16,7 @@ const StatsCounter = () => {
         <div className="flex   justify-center items-center w-full lg:border-r border-gray-300 py-2">
           <div className="w-12 md:w-20 h-12 md:h-20 relative ">
             <Image
-              src="/images/569025.webp"
+              src="/about.png"
               alt={`SCHOOLS LISTED | ${SITE_NAME}`}
               fill
               // Without `sizes`, a `fill` image defaults to 100vw and Next pulls
@@ -38,7 +38,7 @@ const StatsCounter = () => {
         <div className="flex justify-center items-center w-full lg:border-r border-gray-300 py-2">
           <div className="w-12 md:w-20 h-12 md:h-20 relative ">
             <Image
-              src="/images/7756168.webp"
+              src="/about.png"
               alt={`SCHOOLS VISITS | ${SITE_NAME}`}
               fill
               sizes="(max-width: 768px) 48px, 80px"
@@ -57,7 +57,7 @@ const StatsCounter = () => {
         <div className="flex justify-center items-center w-full lg:border-r border-gray-300 py-2">
           <div className="w-12 md:w-20 h-12 md:h-20 relative ">
             <Image
-              src="/images/547601.webp"
+              src="/about.png"
               alt={`PARENTS SERVED | ${SITE_NAME}`}
               fill
               sizes="(max-width: 768px) 48px, 80px"
@@ -77,7 +77,7 @@ const StatsCounter = () => {
         <div className="flex justify-center items-center w-full py-2">
           <div className="w-12 md:w-20 h-12 md:h-20 relative ">
             <Image
-              src="/images/city.webp"
+              src="/about.png"
               alt={`CITIES | ${SITE_NAME}`}
               fill
               sizes="(max-width: 768px) 48px, 80px"

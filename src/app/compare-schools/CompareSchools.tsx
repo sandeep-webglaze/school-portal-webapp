@@ -50,7 +50,7 @@ const CompareSchools = () => {
   return (
     <Fragment>
       <div className="w-screen absolute top-30 md:h-[450px]  h-[250px]  bg-black opacity-30 z-10 "></div>
-      <div className='bg-[url("/images/compareBanner.webp")] bg-no-repeat bg-cover bg-right md:bg-center '>
+      <div className='bg-[url("/about.png")] bg-no-repeat bg-cover bg-right md:bg-center '>
         <Container bgColor="px-4  flex  items-center sm:px-8 lg:px-10 pt-10 md:pt-20 max-w-screen lg:w-screen md:h-[450px]  h-[250px]   ">
           <div className=" p-2 lg:p-6 max-w-sm lg:max-w-lg xl:max-w-2xl  ">
             {/* H1 was "Compare Schools" (15 chars). Lengthened with the
@@ -68,7 +68,7 @@ const CompareSchools = () => {
           <div className=" max-w-md m-auto flex flex-col gap-2 md:gap-4 flex-grow item-center text-black border bg-white p-8 text-center shadow-lg rounded-lg">
             <div className=" m-auto p-8 text-green-500 text-6xl rounded-full  border-spacing-2 w-36">
               <Image
-                src="/images/school-new-icon.webp"
+                src="/about.png"
                 alt={"Add School | " + SITE_NAME}
                 width={256}
                 height={256}

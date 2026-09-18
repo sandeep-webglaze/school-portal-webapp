@@ -137,12 +137,13 @@ export default async function RootLayout({ children }: LayoutProps) {
     safeCall(() => checkUserLoggedIn(), undefined, "layout:checkUserLoggedIn"),
     safeCall(() => getAppConfig(), undefined, "layout:getAppConfig"),
   ]);
-  const organizationSchema = buildOrganizationSchema(config);
-  const localBusinessSchema = buildLocalBusinessSchema(config);
+  const organizationSchema = buildOrganizationSchema(config ?? undefined);
+  const localBusinessSchema = buildLocalBusinessSchema(config ?? undefined);
 
   const pathname = headers().get("x-pathname") ?? "";
   const isHome = pathname === "/";
-  const suppressSiteWideSchemas = isHome && hasHomeAdminSchema(config);
+  const suppressSiteWideSchemas =
+    isHome && hasHomeAdminSchema(config ?? undefined);
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <head>
@@ -160,13 +161,16 @@ export default async function RootLayout({ children }: LayoutProps) {
           isAuthenticated={user?.isAuthenticated ?? false}
           user={user?.user ?? null}
         />
-        <ConfigStore config={config} />
+        <ConfigStore config={config ?? undefined} />
         <NextTopLoader color="#3b6fd4" showSpinner={false} />
         <AuthModals />
         <ScrollToTop />
-        <ResponsiveHeader user={user?.user ?? null} config={config} />
+        <ResponsiveHeader
+          user={user?.user ?? null}
+          config={config ?? undefined}
+        />
         {children}
-        <Footer config={config} />
+        <Footer config={config ?? undefined} />
       </body>
     </html>
   );

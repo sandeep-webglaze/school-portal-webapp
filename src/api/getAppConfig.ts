@@ -18,9 +18,13 @@ export const getAppConfig = unstable_cache(
   async () => {
     try {
       const appConfig = await getAppConfiguration();
-      return appConfig?.data;
+      // Always return null (never undefined) — unstable_cache serializes the
+      // result as JSON, and undefined cannot be cached (it becomes the string
+      // "undefined" and later throws `"undefined" is not valid JSON`).
+      return appConfig?.data ?? null;
     } catch (error) {
-      console.log("Error in feching app config", error);
+      console.log("Error in fetching app config", error);
+      return null;
     }
   },
   ["app-config-global"],

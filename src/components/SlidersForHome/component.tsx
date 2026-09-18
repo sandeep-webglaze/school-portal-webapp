@@ -1,31 +1,30 @@
 import React from "react";
 import { Container } from "../Container";
-import { ColoredHeading } from "../Heading";
 import Image from "next/image";
 import { SITE_NAME } from "@/constants";
 
 const Slider = () => {
   const items = [
     {
-      src: "/images/searchforhome.png",
+      src: "/searchforhome.png",
       label: "Search School",
       width: 80,
       height: 80,
     },
     {
-      src: "/images/visitschoolforhome.png",
+      src: "/visitschoolforhome.png",
       label: "Visit School",
       width: 80,
       height: 80,
     },
     {
-      src: "/images/id-card.png",
+      src: "/id-card.png",
       label: "Process Admission",
       width: 80,
       height: 80,
     },
     {
-      src: "/images/students.png",
+      src: "/students.png",
       label: "Start Your Journey",
       width: 80,
       height: 80,

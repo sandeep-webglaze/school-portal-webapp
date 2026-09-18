@@ -123,7 +123,7 @@ export default function Myprofile() {
               <div className="block relative rounded-full border">
                 <Image
                   alt="profile"
-                  src={user?.imageUrl ?? "/images/placeholder.webp"}
+                  src={user?.imageUrl ?? "/about.png"}
                   width={60}
                   height={60}
                   className="mx-auto object-cover rounded-full w-12 h-12"

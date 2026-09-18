@@ -5,7 +5,7 @@ const NoDataFound = () => {
   return (
     <div className="w-full">
       <Image
-        src={"/images/noData.avif"}
+        src={"/about.png"}
         width={500}
         height={500}
         className="m-auto"

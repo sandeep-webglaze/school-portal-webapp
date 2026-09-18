@@ -247,7 +247,7 @@ const ContactModalForm = (props: ContactModalProps) => {
               {/* full-bleed background image — fills the whole left column top
                   to bottom. Swap the src for any other photo/illustration. */}
               <Image
-                src="/images/inquiry-form-bg.webp"
+                src="/about.png"
                 alt="Find the perfect school for your child"
                 fill
                 sizes="(max-width: 768px) 0px, 40vw"

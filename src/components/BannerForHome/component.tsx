@@ -8,7 +8,7 @@ const BannerForHome = () => {
       <Container bgColor="bg-grayish-light pt-0 pb-4 md:pt-0">
         <div className="  md:px-16 py-6  rounded-xl max-w-max m-auto ">
           <Image
-            src={"/images/admissionbanner.png"}
+            src={"/admissions-banner.png"}
             loading="lazy"
             width={1300}
             height={280}

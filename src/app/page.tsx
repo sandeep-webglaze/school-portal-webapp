@@ -23,7 +23,7 @@ const HOME_VIDEO_SCHEMA = {
 
 const RequestCallBack = dynamic(
   () => import("@/components/RequestCalback/component"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default async function Home() {
@@ -33,7 +33,7 @@ export default async function Home() {
     "homepage:getAppConfig",
   );
 
-  const homeAdminSchemas = getHomeAdminSchemas(config);
+  const homeAdminSchemas = getHomeAdminSchemas(config ?? undefined);
 
   return (
     <Fragment>

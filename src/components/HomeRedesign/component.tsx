@@ -235,7 +235,7 @@ const HomeRedesign: React.FC = () => {
       {/* ============================= HERO ============================= */}
       <section className="relative">
         <img
-          src="/images/banner-home.jpeg"
+          src="/banner-home.jpeg"
           alt="Best schools in Dubai"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -533,7 +533,7 @@ const HomeRedesign: React.FC = () => {
         <div className={`${CONTAINER} py-14`}>
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-500 mb-2">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold mb-2">
                 Explore Top Categories
               </p>
               <h2 className="text-2xl md:text-3xl font-extrabold text-blacky-light">
@@ -585,7 +585,7 @@ const HomeRedesign: React.FC = () => {
           <h2 className="text-2xl md:text-3xl font-extrabold text-blacky-light">
             Featured Schools in Dubai
           </h2>
-          <p className="text-sm text-blacky-light/60 mt-1 mb-8">
+          <p className="text-sm text-gold mt-1 mb-8">
             Discover some of the top-rated schools across Dubai.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -755,10 +755,22 @@ const HomeRedesign: React.FC = () => {
           <div className="lg:justify-self-end">
             <div className="grid w-full max-w-md grid-cols-2 gap-3 rounded-2xl border border-white/20 bg-[#0b1f45]/70 p-4 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.7)] backdrop-blur-md sm:gap-4 sm:p-5">
               {[
-                { icon: FaBuildingColumns, value: "500+", label: "Schools Listed" },
+                {
+                  icon: FaBuildingColumns,
+                  value: "500+",
+                  label: "Schools Listed",
+                },
                 { icon: FaUsers, value: "50K+", label: "Happy Parents" },
-                { icon: FaScaleBalanced, value: "Free", label: "Compare & Apply" },
-                { icon: FaShieldHalved, value: "Verified", label: "Information" },
+                {
+                  icon: FaScaleBalanced,
+                  value: "Free",
+                  label: "Compare & Apply",
+                },
+                {
+                  icon: FaShieldHalved,
+                  value: "Verified",
+                  label: "Information",
+                },
               ].map((s) => (
                 <div
                   key={s.label}

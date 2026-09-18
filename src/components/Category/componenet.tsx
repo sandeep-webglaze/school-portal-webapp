@@ -29,7 +29,7 @@ const Category: FC<CategoryProps> = ({ categories }) => {
             >
               <div className="md:px-10 py-4 flex flex-col justify-center items-center  hover:shadow-lg rounded-lg">
                 <Image
-                  src={"/images/day-school.avif"}
+                  src={"/about.png"}
                   loading="lazy"
                   width={160}
                   height={130}
@@ -50,7 +50,7 @@ const Category: FC<CategoryProps> = ({ categories }) => {
             >
               <div className="md:px-10 py-4 flex flex-col justify-center items-center  hover:shadow-lg rounded-lg">
                 <Image
-                  src={"/images/boarding-school.avif"}
+                  src={"/about.png"}
                   loading="lazy"
                   width={160}
                   height={130}
@@ -72,7 +72,7 @@ const Category: FC<CategoryProps> = ({ categories }) => {
             >
               <div className="md:px-10 py-4 flex flex-col justify-center items-center  hover:shadow-lg rounded-lg">
                 <Image
-                  src={"/images/day-boarding.avif"}
+                  src={"/about.png"}
                   loading="lazy"
                   width={160}
                   height={130}
@@ -92,7 +92,7 @@ const Category: FC<CategoryProps> = ({ categories }) => {
             >
               <div className="md:px-10 py-4 flex flex-col justify-center items-center  hover:shadow-lg rounded-lg">
                 <Image
-                  src={"/images/play-school.avif"}
+                  src={"/about.png"}
                   loading="lazy"
                   width={160}
                   height={130}
