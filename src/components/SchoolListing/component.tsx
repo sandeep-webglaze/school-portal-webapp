@@ -82,11 +82,27 @@ const FACILITIES = [
 ];
 
 const FEATURES = [
-  { icon: FaBuildingColumns, title: "Verified Schools", text: "Trusted & updated" },
-  { icon: FaScaleBalanced, title: "Compare Easily", text: "Make the right choice" },
+  {
+    icon: FaBuildingColumns,
+    title: "Verified Schools",
+    text: "Trusted & updated",
+  },
+  {
+    icon: FaScaleBalanced,
+    title: "Compare Easily",
+    text: "Make the right choice",
+  },
   { icon: FaLocationDot, title: "Find Near You", text: "Search by location" },
-  { icon: FaFileLines, title: "Complete Information", text: "Fees, facilities, reviews" },
-  { icon: FaUsers, title: "Trusted by Parents", text: "50,000+ happy families" },
+  {
+    icon: FaFileLines,
+    title: "Complete Information",
+    text: "Fees, facilities, reviews",
+  },
+  {
+    icon: FaUsers,
+    title: "Trusted by Parents",
+    text: "50,000+ happy families",
+  },
 ];
 
 const STATS = [
@@ -195,21 +211,13 @@ const SchoolListing: React.FC = () => {
     fetchSchools({});
   };
 
-  const toggle = (
-    val: string,
-    list: string[],
-    setter: (v: string[]) => void
-  ) =>
+  const toggle = (val: string, list: string[], setter: (v: string[]) => void) =>
     setter(list.includes(val) ? list.filter((v) => v !== val) : [...list, val]);
 
   const activeCount =
     selType.length + selBoard.length + selFac.length + (selCity ? 1 : 0);
 
-  const checkbox = (
-    label: string,
-    checked: boolean,
-    onChange: () => void
-  ) => (
+  const checkbox = (label: string, checked: boolean, onChange: () => void) => (
     <label
       key={label}
       className="flex cursor-pointer items-center gap-2.5 text-sm text-blacky-light/80"
@@ -231,8 +239,8 @@ const SchoolListing: React.FC = () => {
         <div className="space-y-2.5">
           {types.map((t) =>
             checkbox(t.name, selType.includes(t.name), () =>
-              toggle(t.name, selType, setSelType)
-            )
+              toggle(t.name, selType, setSelType),
+            ),
           )}
         </div>
       </div>
@@ -244,8 +252,8 @@ const SchoolListing: React.FC = () => {
         <div className="space-y-2.5">
           {boards.map((b) =>
             checkbox(b.name, selBoard.includes(b.name), () =>
-              toggle(b.name, selBoard, setSelBoard)
-            )
+              toggle(b.name, selBoard, setSelBoard),
+            ),
           )}
         </div>
       </div>
@@ -305,7 +313,7 @@ const SchoolListing: React.FC = () => {
         <p className="mb-3 text-sm font-bold text-blacky-light">Facilities</p>
         <div className="space-y-2.5">
           {FACILITIES.map((f) =>
-            checkbox(f, selFac.includes(f), () => toggle(f, selFac, setSelFac))
+            checkbox(f, selFac.includes(f), () => toggle(f, selFac, setSelFac)),
           )}
         </div>
       </div>
@@ -330,7 +338,7 @@ const SchoolListing: React.FC = () => {
           alt="Best schools in Dubai"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f45] via-[#0b1f45]/90 to-[#0b1f45]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f45] via-[#0b1f45]/50 to-[#0b1f45]/0" />
         <div className={`relative ${CONTAINER} py-14 md:py-16`}>
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="text-white">
@@ -627,7 +635,10 @@ const SchoolListing: React.FC = () => {
       <section className={`${CONTAINER} pb-4`}>
         <div className="grid grid-cols-2 gap-4 rounded-2xl bg-white p-6 shadow-light lg:grid-cols-4">
           {STATS.map((s) => (
-            <div key={s.label} className="flex items-center justify-center gap-3">
+            <div
+              key={s.label}
+              className="flex items-center justify-center gap-3"
+            >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-600/10 text-green-600">
                 <s.icon />
               </span>
@@ -643,43 +654,223 @@ const SchoolListing: React.FC = () => {
       </section>
 
       {/* ===================== TRUSTED BAND ===================== */}
-      <section className={`${CONTAINER} py-12`}>
-        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[1fr_1.1fr_0.9fr]">
-          <div className="relative overflow-hidden rounded-3xl">
-            <img
-              src="/about.png"
-              alt="Happy family in Dubai"
-              className="h-56 w-full object-cover"
-            />
-          </div>
-          <div className="text-center">
-            <h2 className="text-2xl font-extrabold text-blacky-light md:text-3xl">
-              Trusted by Thousands of Parents in Dubai
-            </h2>
-            <p className="mx-auto mt-3 max-w-md text-sm italic text-blacky-light/70">
-              &ldquo;{SITE_NAME} made it so easy to find the perfect school for
-              our child. Highly recommended!&rdquo;
-            </p>
-            <p className="mt-2 text-sm font-bold text-blacky-light">
-              — Sarah Ali, Dubai
-            </p>
-          </div>
-          <div className="rounded-3xl bg-[#dbe6f7] p-6 text-center">
-            <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-gold/20 text-xl text-gold-dark">
-              <FaPaperPlane />
-            </span>
-            <p className="mt-3 text-lg font-extrabold text-blacky-light">
-              List Your School
-            </p>
-            <p className="mt-1 text-xs text-blacky-light/60">
-              Reach thousands of parents looking for the right school.
-            </p>
-            <Link
-              href="/register-school"
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-2.5 text-sm font-bold text-blacky-light transition hover:opacity-90"
+      {/* ===================== TRUSTED BAND ===================== */}
+      <section className={`${CONTAINER} py-14 sm:py-16 lg:py-20`}>
+        <div
+          className="
+      mx-auto
+      w-full
+      max-w-7xl
+      overflow-hidden
+      rounded-[30px]
+      border border-[#dce6f3]
+      bg-white
+      shadow-[0_18px_50px_rgba(24,55,95,0.08)]
+    "
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* ===================== IMAGE ===================== */}
+            <div className="relative min-h-[260px] overflow-hidden sm:min-h-[300px] lg:min-h-[320px]">
+              <img
+                src="/about.png"
+                alt="Happy family in Dubai"
+                className="
+            absolute
+            inset-0
+            h-full
+            w-full
+            object-cover
+            transition-transform
+            duration-700
+            hover:scale-[1.03]
+          "
+              />
+
+              {/* Soft overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0b3b78]/10 via-transparent to-white/5" />
+
+              {/* Image content */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <div
+                  className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              border border-white/30
+              bg-white/90
+              px-4
+              py-2
+              text-xs
+              font-bold
+              text-[#123f78]
+              shadow-lg
+              backdrop-blur-md
+            "
+                >
+                  <span className="h-2 w-2 rounded-full bg-[#d9aa21]" />
+                  Trusted Education Guidance
+                </div>
+              </div>
+            </div>
+
+            {/* ===================== SCHOOL REGISTRATION ===================== */}
+            <div
+              className="
+          relative
+          flex
+          min-h-[260px]
+          flex-col
+          items-center
+          justify-center
+          bg-[#e8f0fb]
+          px-6
+          py-10
+          text-center
+          sm:px-10
+          lg:min-h-[320px]
+          lg:px-14
+        "
             >
-              Register Your School <FaArrowRight className="text-[11px]" />
-            </Link>
+              {/* Decorative background */}
+              <div
+                className="
+            pointer-events-none
+            absolute
+            -right-20
+            -top-20
+            h-52
+            w-52
+            rounded-full
+            bg-[#d7e5f7]
+            opacity-70
+          "
+              />
+
+              <div
+                className="
+            pointer-events-none
+            absolute
+            -bottom-24
+            -left-16
+            h-44
+            w-44
+            rounded-full
+            bg-[#dce8f8]
+            opacity-70
+          "
+              />
+
+              <div className="relative z-10 flex flex-col items-center">
+                {/* Icon */}
+                <div
+                  className="
+              flex
+              h-14
+              w-14
+              items-center
+              justify-center
+              rounded-2xl
+              bg-[#d9aa21]/15
+              text-xl
+              text-[#b38b13]
+              shadow-sm
+              ring-1
+              ring-[#d9aa21]/10
+            "
+                >
+                  <FaPaperPlane />
+                </div>
+
+                {/* Heading */}
+                <h3
+                  className="
+              mt-5
+              text-xl
+              font-extrabold
+              tracking-[-0.02em]
+              text-[#0d2f61]
+              sm:text-2xl
+            "
+                >
+                  List Your School
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="
+              mx-auto
+              mt-2
+              max-w-md
+              text-sm
+              leading-6
+              text-[#5c7290]
+            "
+                >
+                  Reach thousands of parents searching for the right school for
+                  their children.
+                </p>
+
+                {/* CTA */}
+                <Link
+                  href="/register-school"
+                  className="
+              group
+              mt-6
+              inline-flex
+              items-center
+              gap-3
+              rounded-xl
+              bg-[#d9aa21]
+              px-6
+              py-3
+              text-sm
+              font-extrabold
+              text-[#142f54]
+              shadow-[0_8px_20px_rgba(217,170,33,0.22)]
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-[#c99d18]
+              hover:shadow-[0_12px_26px_rgba(217,170,33,0.30)]
+            "
+                >
+                  Register Your School
+                  <span
+                    className="
+                flex
+                h-6
+                w-6
+                items-center
+                justify-center
+                rounded-full
+                bg-[#142f54]/10
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+              "
+                  >
+                    <FaArrowRight className="text-[10px]" />
+                  </span>
+                </Link>
+
+                {/* Small trust text */}
+                <div
+                  className="
+              mt-5
+              flex
+              items-center
+              gap-2
+              text-[11px]
+              font-medium
+              text-[#7185a0]
+            "
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                  Join our growing network of schools
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
