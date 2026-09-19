@@ -390,8 +390,8 @@ const HomeRedesign: React.FC = () => {
           className="absolute inset-0 h-full w-full object-cover"
         />
         {/* dark navy gradient so white text is readable, skyline visible on the right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f45]/95 via-[#0b1f45]/80 to-[#0b1f45]/30" />
-
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f45]/90 via-[#0b1f45]/50 to-[#0b1f45]/0" />
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/65 to-white/10" /> */}
         <div className={`relative ${CONTAINER} pt-14 pb-28 md:pt-20 md:pb-32`}>
           <div className="max-w-2xl text-white">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3">
@@ -437,62 +437,144 @@ const HomeRedesign: React.FC = () => {
       </section>
 
       {/* ========================== SEARCH CARD ========================== */}
-      <div className={`relative z-30 ${CONTAINER} -mt-16 md:-mt-20 pb-4`}>
-        <div className="overflow-hidden rounded-2xl border-x border-b-0 border-t-[3px] border-x-[#e6ecf5] border-t-[#1e4fa3] bg-white shadow-[0_18px_45px_-15px_rgba(15,35,70,0.28)]">
-          {/* ================= TABS ================= */}
-          <div className="flex items-center gap-1 px-3 pt-3 pb-2 border-b border-gray-100">
-            {TABS.map((t) => (
-              <button
-                key={t.key}
-                onClick={() => {
-                  setTab(t.key);
+      <div className={`relative z-30 ${CONTAINER} -mt-20 md:-mt-24 pb-8`}>
+        <div
+          className="
+      relative
+      rounded-[26px]
+      border-x border-b-0
+      border-x-[#c7d3ea]
+      border-t-[3px] border-t-[#1e4fa3]
+      bg-white
+    "
+        >
+          {/* ================= TOP TABS ================= */}
+          <div className="flex flex-col gap-3 border-b border-[#edf1f7] px-5 pt-5 sm:flex-row sm:items-center sm:justify-between md:px-7">
+            <div className="flex items-center gap-2 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {TABS.map((t) => {
+                const active = tab === t.key;
 
-                  if (t.key !== "find") {
-                    router.push("/schools");
-                  }
-                }}
-                className={`
-            inline-flex items-center gap-2
-            rounded-full
-            px-4 py-2
-            text-[13px]
-            font-semibold
-            transition-all
-            whitespace-nowrap
-            ${
-              tab === t.key
-                ? "bg-[#17458f] text-white shadow-[0_6px_16px_-6px_rgba(23,69,143,0.7)]"
-                : "border border-[#d5deec] bg-white text-[#41527a] hover:border-[#17458f] hover:text-[#17458f]"
-            }
-          `}
-              >
-                <t.icon className="text-[13px]" />
-                {t.label}
-              </button>
-            ))}
+                return (
+                  <button
+                    key={t.key}
+                    onClick={() => {
+                      setTab(t.key);
+
+                      if (t.key !== "find") {
+                        router.push("/schools");
+                      }
+                    }}
+                    className={`
+                group
+                inline-flex
+                min-h-[50px]
+                shrink-0
+                items-center
+                gap-3
+                rounded-2xl
+                px-5
+                text-sm
+                font-bold
+                transition-all
+                duration-200
+
+                ${
+                  active
+                    ? `
+                      bg-gradient-to-r
+                      from-[#1764dc]
+                      to-[#1d75ed]
+                      text-white
+                    `
+                    : `
+                      border
+                      border-[#e3eaf4]
+                      bg-white
+                      text-[#30466f]
+                      hover:border-[#bcd0ee]
+                      hover:bg-[#f7faff]
+                    `
+                }
+              `}
+                  >
+                    <span
+                      className={`
+                  flex h-8 w-8 items-center justify-center rounded-xl
+                  ${active ? "bg-white/15" : "bg-[#eef4ff] text-[#2463c5]"}
+                `}
+                    >
+                      <t.icon className="text-sm" />
+                    </span>
+
+                    <span>{t.label}</span>
+
+                    {t.key === "find" && (
+                      <span
+                        className={`
+                    hidden text-[10px] font-medium sm:block
+                    ${active ? "text-white/70" : "text-[#8a99b2]"}
+                  `}
+                      >
+                        Search & Explore
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right information badge */}
+            <div className="mb-4 hidden items-center gap-3 rounded-2xl bg-[#f1f7ff] px-5 py-3 lg:flex">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#1764dc] shadow-sm">
+                <FaGraduationCap />
+              </span>
+
+              <div className="leading-tight">
+                <p className="text-xs font-bold text-[#173b72]">
+                  Quality Education
+                </p>
+                <p className="text-[11px] text-[#8190a8]">
+                  For a Brighter Tomorrow
+                </p>
+              </div>
+
+              <FaArrowRight className="ml-3 text-xs text-[#1764dc]" />
+            </div>
           </div>
 
-          {/* ================= FILTERS ================= */}
-          <div className="px-4 md:px-5 pt-3 pb-2">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_auto]">
+          {/* ================= FILTER AREA ================= */}
+          <div className="px-5 py-5 md:px-7 md:py-6">
+            <div
+              className="
+          grid
+          grid-cols-1
+          gap-4
+          sm:grid-cols-2
+          lg:grid-cols-[1fr_1fr_1fr_1fr_190px]
+          xl:gap-5
+        "
+            >
               {/* School Type */}
               <div>
-                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-black">
                   School Type
                 </label>
+
                 <Picker
                   icon={FaBuildingColumns}
                   value={type}
                   onChange={setType}
                   options={SCHOOL_TYPES}
-                  placeholder="Select type"
+                  placeholder="Select school type"
                 />
               </div>
+
               {/* Curriculum */}
               <div>
-                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-black">
                   Curriculum
                 </label>
+
                 <Picker
                   icon={FaGlobe}
                   value={curriculum}
@@ -501,11 +583,13 @@ const HomeRedesign: React.FC = () => {
                   placeholder="Select curriculum"
                 />
               </div>
+
               {/* Area */}
               <div>
-                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-black">
                   Area
                 </label>
+
                 <Picker
                   icon={FaLocationDot}
                   value={area}
@@ -514,11 +598,13 @@ const HomeRedesign: React.FC = () => {
                   placeholder="Select area"
                 />
               </div>
+
               {/* Fees */}
               <div>
-                <label className="mb-1 block text-[11px] font-semibold text-[#5d6b82]">
+                <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-black">
                   Fees Range
                 </label>
+
                 <Picker
                   icon={FaTag}
                   value={fees}
@@ -527,29 +613,114 @@ const HomeRedesign: React.FC = () => {
                   placeholder="Any range"
                 />
               </div>
-              {/* Search Button */}
+
+              {/* Search */}
               <div className="flex items-end">
                 <button
                   onClick={onSearch}
-                  className="inline-flex h-11 w-full min-w-[150px] items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#173e82] to-[#17458f] px-5 text-[13px] font-bold text-white shadow-[0_10px_25px_-8px_rgba(23,69,143,0.6)] transition-all hover:opacity-95 lg:w-auto"
+                  className="
+              group
+              flex
+              h-[56px]
+              w-full
+              items-center
+              justify-center
+              gap-3
+              rounded-2xl
+              bg-gradient-to-r
+              from-[#1459c7]
+              to-[#2477ed]
+              px-5
+              text-sm
+              font-bold
+              text-white
+              shadow-[0_14px_30px_-10px_rgba(20,89,199,0.65)]
+              transition-all
+              duration-200
+              hover:-translate-y-0.5
+              hover:shadow-[0_18px_35px_-10px_rgba(20,89,199,0.7)]
+            "
                 >
-                  Search Schools <FaArrowRight className="text-[11px]" />
+                  {/* <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/15">
+                    <FaMagnifyingGlass className="text-xs" />
+                  </span> */}
+
+                  <span>Search Schools</span>
+
+                  {/* <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" /> */}
                 </button>
               </div>
             </div>
 
             {/* ================= POPULAR SEARCHES ================= */}
-            <div className="mt-3 -mx-4 -mb-2 flex flex-wrap items-center gap-2 border-t border-[#eef2f8] bg-[#f7faff] px-4 py-3 text-[12px] md:-mx-5 md:px-5">
-              <span className="font-semibold text-[#8a96a8]">Popular:</span>
+            <div
+              className="
+          mt-6
+          flex
+          flex-wrap
+          items-center
+          gap-2.5
+          border-t
+          border-[#edf1f7]
+          pt-5
+        "
+            >
+              <span className="mr-1 text-xs font-bold text-[#1c3463]">
+                Popular Searches:
+              </span>
+
               {POPULAR.map((p) => (
                 <button
                   key={p}
                   onClick={() => router.push("/schools")}
-                  className="whitespace-nowrap rounded-full border border-[#dbe4f2] bg-white px-3 py-1 font-medium text-[#41527a] transition-colors hover:border-[#17458f] hover:bg-[#17458f] hover:text-white"
+                  className="
+              inline-flex
+              items-center
+              rounded-full
+              border
+              border-[#063285]/40
+              bg-[#f9fbfe]
+              px-4
+              py-2
+              text-[11px]
+              font-semibold
+              text-[#063285]
+              transition-all
+              hover:border-gold
+              hover:bg-[#063285]
+              hover:text-white
+            "
                 >
                   {p}
                 </button>
               ))}
+
+              <button
+                onClick={() => router.push("/schools")}
+                className="
+            ml-auto
+            hidden
+                          items-center
+
+            text-xs
+              rounded-full
+              border
+              border-[#063285]/40
+              bg-[#f9fbfe]
+              px-4
+              py-2
+              text-[11px]
+              text-[#063285]
+              transition-all
+              hover:border-gold
+              hover:bg-[#063285]
+              hover:text-white
+            lg:inline-flex
+          "
+              >
+                <span>Advanced Filters</span>
+                <FaArrowRight className="text-[10px]" />
+              </button>
             </div>
           </div>
         </div>
@@ -782,44 +953,44 @@ const HomeRedesign: React.FC = () => {
                   <SchoolCardSkeleton key={i} width="w-[260px] shrink-0" />
                 ))
               : trending.map((s: any) => (
-              <div
-                key={s.name}
-                className="w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-light"
-              >
-                <div className="relative h-36 overflow-hidden">
-                  <img
-                    src={s.img}
-                    alt={s.name}
-                    className="h-full w-full object-cover"
-                  />
-                  <span className="absolute left-3 top-3 rounded-md bg-gold px-2 py-1 text-[10px] font-bold text-white">
-                    Trending
-                  </span>
-                </div>
-                <div className="p-4">
-                  <h3 className="min-h-[40px] text-sm font-bold leading-snug text-blacky-light">
-                    {s.name}
-                  </h3>
-                  <p className="mt-1 flex items-center gap-1 text-xs text-blacky-light/60">
-                    <FaLocationDot className="text-green-500" /> {s.area}
-                  </p>
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="rounded-md bg-[#eef4fb] px-2 py-1 text-[11px] font-medium text-green-600">
-                      {s.curriculum}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs font-bold text-blacky-light">
-                      <FaStar className="text-gold" /> {s.rating}
-                    </span>
-                  </div>
-                  <Link
-                    href={s.slug ? `/school/${s.slug}` : "/schools"}
-                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-green-600 py-2 text-xs font-semibold text-green-600 transition-colors hover:bg-green-600 hover:text-white"
+                  <div
+                    key={s.name}
+                    className="w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-light"
                   >
-                    View Details <FaArrowRight className="text-[10px]" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+                    <div className="relative h-36 overflow-hidden">
+                      <img
+                        src={s.img}
+                        alt={s.name}
+                        className="h-full w-full object-cover"
+                      />
+                      <span className="absolute left-3 top-3 rounded-md bg-gold px-2 py-1 text-[10px] font-bold text-white">
+                        Trending
+                      </span>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="min-h-[40px] text-sm font-bold leading-snug text-blacky-light">
+                        {s.name}
+                      </h3>
+                      <p className="mt-1 flex items-center gap-1 text-xs text-blacky-light/60">
+                        <FaLocationDot className="text-green-500" /> {s.area}
+                      </p>
+                      <div className="mt-3 flex items-center justify-between">
+                        <span className="rounded-md bg-[#eef4fb] px-2 py-1 text-[11px] font-medium text-green-600">
+                          {s.curriculum}
+                        </span>
+                        <span className="flex items-center gap-1 text-xs font-bold text-blacky-light">
+                          <FaStar className="text-gold" /> {s.rating}
+                        </span>
+                      </div>
+                      <Link
+                        href={s.slug ? `/school/${s.slug}` : "/schools"}
+                        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-green-600 py-2 text-xs font-semibold text-green-600 transition-colors hover:bg-green-600 hover:text-white"
+                      >
+                        View Details <FaArrowRight className="text-[10px]" />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </section>
