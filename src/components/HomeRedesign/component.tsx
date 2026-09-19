@@ -381,7 +381,7 @@ const HomeRedesign: React.FC = () => {
   };
 
   return (
-    <main className="bg-[#eef4fb]">
+    <main className="bg-white">
       {/* ============================= HERO ============================= */}
       <section className="relative">
         <img
@@ -437,7 +437,7 @@ const HomeRedesign: React.FC = () => {
       </section>
 
       {/* ========================== SEARCH CARD ========================== */}
-      <div className={`relative z-30 ${CONTAINER} -mt-20 md:-mt-24 pb-8`}>
+      <div className={`relative z-30 ${CONTAINER} -mt-20 md:-mt-24 pb-4`}>
         <div
           className="
       relative
@@ -727,7 +727,7 @@ const HomeRedesign: React.FC = () => {
       </div>
 
       {/* ========================== CATEGORIES ========================== */}
-      <section className="bg-[#eef4fb]">
+      <section className="bg-gold-light/10 pb-4">
         <div className={`${CONTAINER} py-14`}>
           <div className="flex items-end justify-between mb-8">
             <div>
@@ -778,7 +778,7 @@ const HomeRedesign: React.FC = () => {
       </section>
 
       {/* ===================== CURRICULUM STRIP ===================== */}
-      <section className="bg-white">
+      <section className="bg-[#0b1f45]/5 mt-0">
         <div className={`${CONTAINER} py-12`}>
           <div className="mb-6 text-center">
             <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
@@ -916,81 +916,506 @@ const HomeRedesign: React.FC = () => {
       </section>
 
       {/* ===================== TRENDING CAROUSEL ===================== */}
-      <section className="bg-[#eef4fb]">
-        <div className={`${CONTAINER} py-14`}>
-          <div className="mb-6 flex items-end justify-between">
+      <section
+        className="
+    group
+    relative
+    overflow-hidden
+    bg-[#f5f9ff]
+  "
+      >
+        {/* =========================================================
+      GRID BACKGROUND
+  ========================================================== */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      inset-0
+      opacity-[0.72]
+      [background-image:linear-gradient(to_right,#d4e2f3_1px,transparent_1px),linear-gradient(to_bottom,#d4e2f3_1px,transparent_1px)]
+      [background-size:32px_32px]
+    "
+        />
+
+        {/* =========================================================
+      SOFT WHITE CENTER FADE
+  ========================================================== */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      inset-0
+      bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.78)_0%,rgba(248,251,255,0.42)_45%,rgba(247,250,255,0)_100%)]
+    "
+        />
+
+        {/* =========================================================
+      BLUE GLOW - LEFT
+  ========================================================== */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      -left-24
+      top-1/4
+      h-[500px]
+      w-[500px]
+      rounded-full
+      bg-[#2874df]/20
+      blur-[80px]
+      opacity-50
+      transition-all
+      duration-700
+      group-hover:opacity-100
+      group-hover:bg-[#2874df]/25
+    "
+        />
+
+        {/* =========================================================
+      GOLD GLOW - RIGHT
+  ========================================================== */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      -right-24
+      bottom-[-80px]
+      h-[460px]
+      w-[460px]
+      rounded-full
+      bg-[#e1ad21]/15
+      blur-[80px]
+      opacity-50
+      transition-all
+      duration-700
+      group-hover:opacity-100
+      group-hover:bg-[#e1ad21]/20
+    "
+        />
+
+        {/* =========================================================
+      TOP CENTER BLUE GLOW
+  ========================================================== */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      left-1/2
+      top-[-180px]
+      h-[400px]
+      w-[600px]
+      -translate-x-1/2
+      rounded-full
+      bg-[#4b8ff5]/10
+      blur-[100px]
+      opacity-60
+      transition-all
+      duration-700
+      group-hover:opacity-90
+    "
+        />
+
+        {/* =========================================================
+      MAIN CONTENT
+  ========================================================== */}
+        <div
+          className={`
+      ${CONTAINER}
+      relative
+      z-10
+      py-14
+    `}
+        >
+          {/* =======================================================
+        SECTION HEADER
+    ======================================================== */}
+          <div className="mb-7 flex items-end justify-between">
             <div>
-              <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+              {/* Section Badge */}
+              <p
+                className="
+            mb-3
+            inline-flex
+            items-center
+            rounded-lg
+            bg-[#0b1f45]
+            px-3
+            py-1.5
+            text-[10px]
+            font-bold
+            uppercase
+            tracking-[0.18em]
+            text-gold
+            shadow-sm
+          "
+              >
                 Trending Now
               </p>
-              <h2 className="text-2xl font-extrabold text-blacky-light md:text-3xl">
+
+              {/* Heading */}
+              <h2
+                className="
+            text-2xl
+            font-extrabold
+            tracking-tight
+            text-[#142f58]
+            md:text-3xl
+          "
+              >
                 Popular Schools This Week
               </h2>
+
+              {/* Description */}
+              <p
+                className="
+            mt-1.5
+            text-sm
+            text-[#64748b]
+          "
+              >
+                Discover schools parents are exploring right now.
+              </p>
             </div>
+
+            {/* =====================================================
+          CAROUSEL CONTROLS
+      ====================================================== */}
             <div className="hidden gap-2 sm:flex">
+              {/* Previous */}
               <button
                 onClick={() => scrollTrending(-1)}
                 aria-label="Previous"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-blacky-light/70 transition hover:bg-green-600 hover:text-white"
+                className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-[#dce6f2]
+            bg-white/90
+            text-[#38527b]
+            shadow-[0_8px_20px_-12px_rgba(20,60,110,0.35)]
+            backdrop-blur-sm
+            transition-all
+            duration-200
+            hover:-translate-y-0.5
+            hover:border-[#2874df]
+            hover:bg-[#2874df]
+            hover:text-white
+            hover:shadow-[0_12px_25px_-12px_rgba(40,116,223,0.55)]
+          "
               >
                 <FaChevronLeft className="text-xs" />
               </button>
+
+              {/* Next */}
               <button
                 onClick={() => scrollTrending(1)}
                 aria-label="Next"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-blacky-light/70 transition hover:bg-green-600 hover:text-white"
+                className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-[#dce6f2]
+            bg-white/90
+            text-[#38527b]
+            shadow-[0_8px_20px_-12px_rgba(20,60,110,0.35)]
+            backdrop-blur-sm
+            transition-all
+            duration-200
+            hover:-translate-y-0.5
+            hover:border-[#2874df]
+            hover:bg-[#2874df]
+            hover:text-white
+            hover:shadow-[0_12px_25px_-12px_rgba(40,116,223,0.55)]
+          "
               >
                 <FaChevronRight className="text-xs" />
               </button>
             </div>
           </div>
+
+          {/* =======================================================
+        CARDS CAROUSEL
+    ======================================================== */}
           <div
             ref={trackRef}
-            className="flex snap-x gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="
+        flex
+        snap-x
+        gap-5
+        overflow-x-auto
+        pb-5
+        [scrollbar-width:none]
+        [&::-webkit-scrollbar]:hidden
+      "
           >
             {trLoading
-              ? Array.from({ length: 5 }).map((_, i) => (
-                  <SchoolCardSkeleton key={i} width="w-[260px] shrink-0" />
+              ? /* =====================================================
+           LOADING SKELETONS
+        ====================================================== */
+                Array.from({ length: 5 }).map((_, i) => (
+                  <SchoolCardSkeleton key={i} width="w-[280px] shrink-0" />
                 ))
-              : trending.map((s: any) => (
+              : /* =====================================================
+           TRENDING SCHOOL CARDS
+        ====================================================== */
+                trending.map((s: any) => (
                   <div
                     key={s.name}
-                    className="w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-light"
+                    className="
+              group/card
+              relative
+              w-[280px]
+              shrink-0
+              snap-start
+              overflow-hidden
+              rounded-[22px]
+              border
+              border-[#dfe8f3]
+              bg-white
+              shadow-[0_12px_35px_-20px_rgba(20,60,110,0.4)]
+              transition-all
+              duration-300
+              hover:-translate-y-1.5
+              hover:border-[#bdd1ed]
+              hover:shadow-[0_25px_50px_-20px_rgba(30,90,170,0.38)]
+            "
                   >
-                    <div className="relative h-36 overflow-hidden">
+                    {/* =================================================
+                CARD IMAGE
+            ================================================== */}
+                    <div className="relative h-[165px] overflow-hidden">
                       <img
                         src={s.img}
                         alt={s.name}
-                        className="h-full w-full object-cover"
+                        className="
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-500
+                  group-hover/card:scale-105
+                "
                       />
-                      <span className="absolute left-3 top-3 rounded-md bg-gold px-2 py-1 text-[10px] font-bold text-white">
+
+                      {/* Image overlay */}
+                      <div
+                        className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-[#0b1f45]/45
+                  via-transparent
+                  to-transparent
+                "
+                      />
+
+                      {/* =================================================
+                  TRENDING BADGE
+              ================================================== */}
+                      <span
+                        className="
+                  absolute
+                  left-3
+                  top-3
+                  inline-flex
+                  items-center
+                  rounded-full
+                  border
+                  border-white/30
+                  bg-[#e1ad21]/95
+                  px-3
+                  py-1
+                  text-[10px]
+                  font-bold
+                  text-white
+                  shadow-lg
+                  backdrop-blur-sm
+                "
+                      >
                         Trending
                       </span>
+
+                      {/* =================================================
+                  RATING BADGE
+              ================================================== */}
+                      <span
+                        className="
+                  absolute
+                  bottom-3
+                  right-3
+                  inline-flex
+                  items-center
+                  gap-1
+                  rounded-full
+                  bg-white/95
+                  px-2.5
+                  py-1.5
+                  text-[11px]
+                  font-bold
+                  text-[#263b5d]
+                  shadow-lg
+                  backdrop-blur-sm
+                "
+                      >
+                        <FaStar className="text-[10px] text-gold" />
+                        {s.rating}
+                      </span>
                     </div>
-                    <div className="p-4">
-                      <h3 className="min-h-[40px] text-sm font-bold leading-snug text-blacky-light">
+
+                    {/* =================================================
+                CARD CONTENT
+            ================================================== */}
+                    <div className="p-3 flex flex-col flex-1">
+                      {/* School Name */}
+                      <h3
+                        className="
+                  min-h-[42px]
+                  text-sm
+                  font-extrabold
+                  leading-snug
+                  text-[#17345f]
+                  transition-colors
+                  group-hover/card:text-[#1764dc]
+                "
+                      >
                         {s.name}
                       </h3>
-                      <p className="mt-1 flex items-center gap-1 text-xs text-blacky-light/60">
-                        <FaLocationDot className="text-green-500" /> {s.area}
+
+                      {/* Location */}
+                      <p
+                        className="
+                  mt-2
+                  flex
+                  items-center
+                  gap-1.5
+                  text-xs
+                  text-[#71819a]
+                "
+                      >
+                        <FaLocationDot className="text-[#2874df]" />
+                        <span className="truncate">{s.area}</span>
                       </p>
-                      <div className="mt-3 flex items-center justify-between">
-                        <span className="rounded-md bg-[#eef4fb] px-2 py-1 text-[11px] font-medium text-green-600">
+
+                      {/* =================================================
+                  CURRICULUM + RATING
+              ================================================== */}
+                      <div
+                        className="
+                  mt-4
+                  flex
+                  items-center
+                  justify-between
+                  gap-2
+                "
+                      >
+                        {/* Curriculum */}
+                        <span
+                          className="
+                    max-w-[150px]
+                    truncate
+                    rounded-full
+                    border
+                    border-[#dce8f6]
+                    bg-[#f3f7fd]
+                    px-3
+                    py-1.5
+                    text-[10px]
+                    font-bold
+                    text-[#2462a8]
+                  "
+                        >
                           {s.curriculum}
                         </span>
-                        <span className="flex items-center gap-1 text-xs font-bold text-blacky-light">
-                          <FaStar className="text-gold" /> {s.rating}
+
+                        {/* Rating */}
+                        <span
+                          className="
+                    flex
+                    items-center
+                    gap-1
+                    text-xs
+                    font-bold
+                    text-[#344968]
+                  "
+                        >
+                          <FaStar className="text-[11px] text-gold" />
+                          {s.rating}
                         </span>
                       </div>
+
+                      {/* =================================================
+                  VIEW DETAILS
+              ================================================== */}
                       <Link
                         href={s.slug ? `/school/${s.slug}` : "/schools"}
-                        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-green-600 py-2 text-xs font-semibold text-green-600 transition-colors hover:bg-green-600 hover:text-white"
+                        className="
+                  group/link
+                  mt-4
+                  inline-flex
+                  w-full
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-xl
+                  border
+                  border-[#2874df]
+                  bg-white
+                  py-2.5
+                  text-xs
+                  font-bold
+                  text-[#2874df]
+                  transition-all
+                  duration-200
+                  hover:bg-[#2874df]
+                  hover:text-white
+                  hover:shadow-[0_10px_25px_-12px_rgba(40,116,223,0.7)]
+                "
                       >
-                        View Details <FaArrowRight className="text-[10px]" />
+                        View Details
+                        <FaArrowRight
+                          className="
+                    text-[10px]
+                    transition-transform
+                    duration-200
+                    group-hover/link:translate-x-1
+                  "
+                        />
                       </Link>
                     </div>
                   </div>
                 ))}
+          </div>
+
+          {/* =======================================================
+        MOBILE SCROLL HINT
+    ======================================================== */}
+          <div className="mt-1 flex items-center justify-center sm:hidden">
+            <span
+              className="
+          rounded-full
+          bg-white/80
+          px-4
+          py-1.5
+          text-[10px]
+          font-semibold
+          text-[#71819a]
+          shadow-sm
+          ring-1
+          ring-[#e1e9f3]
+        "
+            >
+              Swipe to explore more schools →
+            </span>
           </div>
         </div>
       </section>
@@ -1182,84 +1607,383 @@ const HomeRedesign: React.FC = () => {
       </section>
 
       {/* ===================== FAQ ===================== */}
-      <section className="bg-white">
+      <section
+        className="
+    group
+    relative
+    overflow-hidden
+    bg-[#f8fbff]
+    py-16
+  "
+      >
+        {/* ================= GRID BACKGROUND ================= */}
+
+        {/* fine grid */}
         <div
-          className={`${CONTAINER} grid grid-cols-1 gap-10 py-16 lg:grid-cols-[0.85fr_1.15fr]`}
+          className="
+      pointer-events-none
+      absolute
+      inset-0
+      opacity-[0.55]
+      [background-image:linear-gradient(to_right,#dbe7f5_1px,transparent_1px),linear-gradient(to_bottom,#dbe7f5_1px,transparent_1px)]
+      [background-size:32px_32px]
+    "
+        />
+
+        {/* soft white fade over grid */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      inset-0
+      bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.95)_0%,rgba(248,251,255,0.65)_45%,rgba(248,251,255,0.15)_100%)]
+    "
+        />
+
+        {/* ================= MOUSE HOVER GLOW ================= */}
+
+        <div
+          className="
+      pointer-events-none
+      absolute
+      -left-32
+      top-1/3
+      h-[420px]
+      w-[420px]
+      rounded-full
+      bg-[#2874df]/10
+      blur-[100px]
+      opacity-0
+      transition-opacity
+      duration-700
+      group-hover:opacity-100
+    "
+        />
+
+        <div
+          className="
+      pointer-events-none
+      absolute
+      -right-32
+      bottom-0
+      h-[380px]
+      w-[380px]
+      rounded-full
+      bg-[#e1ad21]/10
+      blur-[100px]
+      opacity-0
+      transition-opacity
+      duration-700
+      group-hover:opacity-100
+    "
+        />
+
+        {/* ================= CONTENT ================= */}
+
+        <div
+          className={`
+      ${CONTAINER}
+      relative
+      z-10
+      grid
+      grid-cols-1
+      gap-10
+      lg:grid-cols-[0.85fr_1.15fr]
+    `}
         >
+          {/* ================= LEFT ================= */}
+
           <div>
-            <p className="mb-3 inline-flex items-center rounded-lg bg-[#0b1f45] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold">
+            {/* Label */}
+            <p
+              className="
+          mb-3
+          inline-flex
+          items-center
+          rounded-lg
+          bg-[#0b1f45]
+          px-3
+          py-1.5
+          text-[10px]
+          font-bold
+          uppercase
+          tracking-[0.18em]
+          text-gold
+          shadow-sm
+        "
+            >
               FAQ
             </p>
-            <h2 className="text-2xl font-extrabold leading-snug text-blacky-light md:text-3xl">
+
+            {/* Heading */}
+            <h2
+              className="
+          text-2xl
+          font-extrabold
+          leading-snug
+          text-[#142f58]
+          md:text-3xl
+        "
+            >
               Frequently Asked <span className="text-gold">Questions</span>
             </h2>
-            <p className="mt-3 max-w-sm text-sm text-blacky-light/60">
+
+            {/* Description */}
+            <p
+              className="
+          mt-3
+          max-w-sm
+          text-sm
+          leading-6
+          text-[#64748b]
+        "
+            >
               Everything parents usually ask before choosing a school in Dubai.
               Still unsure? Our team is here for you.
             </p>
-            <div className="relative mt-6 overflow-hidden rounded-2xl bg-gradient-to-br from-[#173e82] to-green-600 p-6 text-white">
-              <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gold/20 blur-2xl" />
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-xl text-gold">
+
+            {/* ================= EXPERT CARD ================= */}
+
+            <div
+              className="
+          relative
+          mt-7
+          overflow-hidden
+          rounded-3xl
+          border
+          border-white/20
+          bg-gradient-to-br
+          from-[#123d80]
+          via-[#174f9e]
+          to-[#178b73]
+          p-6
+          text-white
+          shadow-[0_20px_50px_-20px_rgba(18,61,128,0.45)]
+          transition-all
+          duration-300
+          hover:-translate-y-1
+          hover:shadow-[0_25px_60px_-20px_rgba(18,61,128,0.55)]
+        "
+            >
+              {/* decorative glow */}
+              <div
+                className="
+            pointer-events-none
+            absolute
+            -right-10
+            -top-10
+            h-32
+            w-32
+            rounded-full
+            bg-gold/25
+            blur-3xl
+          "
+              />
+
+              <div
+                className="
+            pointer-events-none
+            absolute
+            -bottom-16
+            -left-10
+            h-32
+            w-32
+            rounded-full
+            bg-white/10
+            blur-3xl
+          "
+              />
+
+              {/* Icon */}
+              <span
+                className="
+            relative
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-2xl
+            bg-white/15
+            text-xl
+            text-gold
+            ring-1
+            ring-white/20
+          "
+              >
                 <FaHeadset />
               </span>
-              <p className="mt-4 text-lg font-extrabold">
+
+              <p className="relative mt-5 text-lg font-extrabold">
                 Still have questions?
               </p>
-              <p className="mt-1 text-sm text-white/80">
+
+              <p className="relative mt-1 text-sm leading-6 text-white/75">
                 Talk to our counsellors — free, no pressure.
               </p>
+
               <a
                 href="#get-admission-help"
-                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-2.5 text-sm font-bold text-blacky-light transition hover:opacity-90"
+                className="
+            group/btn
+            relative
+            mt-5
+            inline-flex
+            items-center
+            gap-2
+            rounded-xl
+            bg-gold
+            px-5
+            py-2.5
+            text-sm
+            font-bold
+            text-[#142f58]
+            shadow-lg
+            transition-all
+            duration-200
+            hover:-translate-y-0.5
+            hover:shadow-xl
+          "
               >
-                Ask Our Experts <FaArrowRight className="text-[11px]" />
+                Ask Our Experts
+                <FaArrowRight
+                  className="
+              text-[11px]
+              transition-transform
+              group-hover/btn:translate-x-1
+            "
+                />
               </a>
             </div>
           </div>
+
+          {/* ================= RIGHT FAQ ================= */}
+
           <div className="space-y-3">
             {FAQS.map((f, i) => {
               const open = openFaq === i;
+
               return (
                 <div
                   key={f.q}
-                  className={`overflow-hidden rounded-2xl border transition-all ${
-                    open
-                      ? "border-green-600 bg-white shadow-spread"
-                      : "border-gray-100 bg-[#f8fbff]"
-                  }`}
+                  className={`
+              group/faqs
+              relative
+              overflow-hidden
+              rounded-2xl
+              border
+              transition-all
+              duration-300
+
+              ${
+                open
+                  ? `
+                    border-[#2874df]
+                    bg-white
+                    shadow-[0_15px_40px_-18px_rgba(40,116,223,0.4)]
+                  `
+                  : `
+                    border-[#e0e8f3]
+                    bg-white/80
+                    backdrop-blur-sm
+                    hover:-translate-y-[2px]
+                    hover:border-[#b9cfee]
+                    hover:bg-white
+                    hover:shadow-[0_12px_30px_-18px_rgba(30,70,120,0.3)]
+                  `
+              }
+            `}
                 >
+                  {/* Active/hover top glow */}
+                  <div
+                    className={`
+                pointer-events-none
+                absolute
+                inset-x-0
+                top-0
+                h-px
+                bg-gradient-to-r
+                from-transparent
+                via-[#2874df]
+                to-transparent
+                transition-opacity
+                ${open ? "opacity-100" : "opacity-0 group-hover/faq:opacity-70"}
+              `}
+                  />
+
+                  {/* Question */}
                   <button
                     onClick={() => setOpenFaq(open ? null : i)}
-                    className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
+                    className="
+                flex
+                w-full
+                items-center
+                justify-between
+                gap-4
+                px-5
+                py-5
+                text-left
+              "
                   >
                     <span
-                      className={`text-sm font-bold ${
-                        open ? "text-green-600" : "text-blacky-light"
-                      }`}
+                      className={`
+                  text-sm
+                  font-bold
+                  transition-colors
+                  ${
+                    open
+                      ? "text-[#1764dc]"
+                      : "text-[#243b61] group-hover/faq:text-[#1764dc]"
+                  }
+                `}
                     >
                       {f.q}
                     </span>
+
+                    {/* Arrow */}
                     <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all ${
-                        open
-                          ? "bg-green-600 text-white"
-                          : "bg-green-600/10 text-green-600"
-                      }`}
+                      className={`
+                  flex
+                  h-8
+                  w-8
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  transition-all
+                  duration-300
+
+                  ${
+                    open
+                      ? "rotate-180 bg-[#1764dc] text-white"
+                      : "bg-[#eef4fb] text-[#1764dc] group-hover/faq:bg-[#1764dc] group-hover/faq:text-white"
+                  }
+                `}
                     >
-                      <FaChevronDown
-                        className={`text-[10px] transition-transform ${
-                          open ? "rotate-180" : ""
-                        }`}
-                      />
+                      <FaChevronDown className="text-[10px]" />
                     </span>
                   </button>
+
+                  {/* Answer */}
                   <div
-                    className={`grid transition-all duration-300 ${
-                      open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
+                    className={`
+                grid
+                transition-all
+                duration-300
+                ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}
+              `}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-5 pb-4 text-sm leading-relaxed text-blacky-light/65">
+                      <p
+                        className="
+                    px-5
+                    pb-5
+                    pr-16
+                    text-sm
+                    leading-6
+                    text-[#64748b]
+                  "
+                      >
                         {f.a}
                       </p>
                     </div>
