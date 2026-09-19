@@ -727,7 +727,7 @@ const HomeRedesign: React.FC = () => {
       </div>
 
       {/* ========================== CATEGORIES ========================== */}
-      <section className="bg-gold-light/10 pb-4">
+      <section>
         <div className={`${CONTAINER} py-14`}>
           <div className="flex items-end justify-between mb-8">
             <div>
@@ -927,7 +927,7 @@ const HomeRedesign: React.FC = () => {
         {/* =========================================================
       GRID BACKGROUND
   ========================================================== */}
-        <div
+        {/* <div
           className="
       pointer-events-none
       absolute
@@ -936,7 +936,7 @@ const HomeRedesign: React.FC = () => {
       [background-image:linear-gradient(to_right,#d4e2f3_1px,transparent_1px),linear-gradient(to_bottom,#d4e2f3_1px,transparent_1px)]
       [background-size:32px_32px]
     "
-        />
+        /> */}
 
         {/* =========================================================
       SOFT WHITE CENTER FADE
