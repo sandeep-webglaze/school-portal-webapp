@@ -20,10 +20,28 @@ const RequestCallBack: React.FC<RequestCallBackProps> = ({
   const contactModal = useContactModal();
 
   useEffect(() => {
-    if (autoOpen) {
-      const timer = setTimeout(() => contactModal.onOpen(), delay);
-      return () => clearTimeout(timer);
+    if (!autoOpen) return;
+
+    // Only auto-open the popup a few times per browser (max 3). After that it
+    // stays available via the buttons, but stops popping up on its own.
+    const MAX_AUTO_POPUPS = 3;
+    let count = 0;
+    try {
+      count = parseInt(localStorage.getItem("ep_auto_popup_count") || "0", 10) || 0;
+    } catch {
+      count = 0;
     }
+    if (count >= MAX_AUTO_POPUPS) return;
+
+    const timer = setTimeout(() => {
+      contactModal.onOpen();
+      try {
+        localStorage.setItem("ep_auto_popup_count", String(count + 1));
+      } catch {
+        /* ignore */
+      }
+    }, delay);
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoOpen, delay]);
 

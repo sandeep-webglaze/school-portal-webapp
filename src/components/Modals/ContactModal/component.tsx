@@ -235,13 +235,15 @@ const ContactModalForm = (props: ContactModalProps) => {
       onClick={closeModal}
     >
         <div
-          className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-2xl bg-white shadow-2xl md:overflow-visible"
+          className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 md:overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Fixed min height on desktop so Step 1 and Step 2 are the same
-              size — this keeps the left image column fully covered and stops
-              the modal from resizing when switching steps. */}
-          <div className="flex flex-col md:min-h-[720px] md:flex-row">
+          {/* subtle brand accent on top */}
+          <div className="h-1.5 w-full bg-gradient-to-r from-[#1e4fa3] via-[#3b6fd4] to-gold" />
+          {/* FIXED height on desktop so Step 1 and Step 2 are ALWAYS the same
+              size — the modal never resizes when switching steps (Step 2
+              scrolls inside the form area if it is a little taller). */}
+          <div className="flex flex-col md:h-[640px] md:flex-row">
             {/* ---- Left illustrated / trust panel ---- */}
             <div className="relative hidden md:block md:w-2/5 overflow-hidden rounded-l-2xl bg-green-50">
               {/* full-bleed background image — fills the whole left column top
@@ -291,7 +293,7 @@ const ContactModalForm = (props: ContactModalProps) => {
             </div>
 
             {/* ---- Right form panel ---- */}
-            <div className="relative flex w-full flex-col p-6 sm:p-8 md:w-3/5">
+            <div className="relative flex w-full flex-col p-6 sm:p-8 md:w-3/5 md:overflow-y-auto">
               {/* header row: back (step 2) + close */}
               <div className="mb-4 flex items-center justify-between">
                 {step === 2 ? (
@@ -330,7 +332,7 @@ const ContactModalForm = (props: ContactModalProps) => {
               </p>
 
               {/* step indicator */}
-              <div className="mt-5 flex items-stretch overflow-hidden rounded-xl border border-neutral-200">
+              <div className="mt-5 flex items-stretch overflow-hidden rounded-2xl border border-[#e1e6ee] bg-[#f4f8fd]">
                 <div
                   className={`flex flex-1 items-center gap-2 px-4 py-3 ${
                     step === 1 ? "bg-green-50" : "bg-white"
@@ -393,7 +395,7 @@ const ContactModalForm = (props: ContactModalProps) => {
                         {...register("name", { required: true })}
                         disabled={isLoading}
                         placeholder="Parent Name"
-                        className={`w-full rounded-lg border bg-gray-50 py-3.5 pl-11 pr-4 text-sm outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-600 ${
+                        className={`h-12 w-full rounded-xl border bg-[#f4f8fd] pl-11 pr-4 text-sm outline-none transition focus:border-green-600 focus:bg-white focus:ring-4 focus:ring-green-600/10 ${
                           errors.name ? "border-red-400" : "border-gray-200"
                         }`}
                       />
@@ -404,16 +406,16 @@ const ContactModalForm = (props: ContactModalProps) => {
                         {...register("phoneNumber", {
                           required: true,
                           pattern: {
-                            value: /^[0-9]{10}$/,
-                            message: "Enter a valid 10-digit number",
+                            value: /^\+?[0-9\s-]{6,15}$/,
+                            message: "Enter a valid phone number",
                           },
                         })}
                         type="tel"
-                        maxLength={10}
-                        inputMode="numeric"
+                        maxLength={15}
+                        inputMode="tel"
                         disabled={isLoading}
                         placeholder="Mobile Number"
-                        className={`w-full rounded-lg border bg-gray-50 py-3.5 pl-11 pr-4 text-sm outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-600 ${
+                        className={`h-12 w-full rounded-xl border bg-[#f4f8fd] pl-11 pr-4 text-sm outline-none transition focus:border-green-600 focus:bg-white focus:ring-4 focus:ring-green-600/10 ${
                           errors.phoneNumber
                             ? "border-red-400"
                             : "border-gray-200"
@@ -433,7 +435,7 @@ const ContactModalForm = (props: ContactModalProps) => {
                         type="email"
                         disabled={isLoading}
                         placeholder="Email Address"
-                        className={`w-full rounded-lg border bg-gray-50 py-3.5 pl-11 pr-4 text-sm outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-600 ${
+                        className={`h-12 w-full rounded-xl border bg-[#f4f8fd] pl-11 pr-4 text-sm outline-none transition focus:border-green-600 focus:bg-white focus:ring-4 focus:ring-green-600/10 ${
                           errors.email ? "border-red-400" : "border-gray-200"
                         }`}
                       />
@@ -442,9 +444,10 @@ const ContactModalForm = (props: ContactModalProps) => {
                     <button
                       type="button"
                       onClick={goToStep2}
-                      className="mt-1 flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 py-4 text-sm font-bold text-white transition hover:bg-green-700"
+                      className="group mt-1 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#173e82] to-green-600 text-sm font-bold text-white shadow-[0_12px_28px_-10px_rgba(30,79,163,0.6)] transition hover:opacity-95"
                     >
-                      Continue <FaArrowRight />
+                      Continue{" "}
+                      <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
                     </button>
                   </>
                 )}
@@ -562,12 +565,14 @@ const ContactModalForm = (props: ContactModalProps) => {
                     <button
                       disabled={isLoading}
                       type="submit"
-                      className="mt-1 flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 py-4 text-sm font-bold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-70"
+                      className="group mt-1 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#173e82] to-green-600 text-sm font-bold text-white shadow-[0_12px_28px_-10px_rgba(30,79,163,0.6)] transition hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       {isLoading
                         ? "Submitting..."
                         : "Get FREE School Recommendations"}
-                      {!isLoading && <FaArrowRight />}
+                      {!isLoading && (
+                        <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
+                      )}
                     </button>
                   </>
                 )}

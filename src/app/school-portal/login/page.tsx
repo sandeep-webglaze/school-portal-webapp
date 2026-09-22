@@ -138,8 +138,14 @@ export default function SchoolLoginPage() {
       </div>
 
       {/* ===================== RIGHT (form) ===================== */}
-      <div className="flex items-center justify-center bg-[#eef4fb] p-6">
-        <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-[0_25px_60px_-25px_rgba(15,35,70,0.3)]">
+      <div className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#eef4fb] via-[#eaf1fb] to-[#dbe6f7] p-6">
+        {/* soft decorative shapes so the panel isn't empty */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#1e4fa3]/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-12 h-72 w-72 rounded-full bg-gold/15 blur-3xl" />
+        <div className="pointer-events-none absolute right-12 top-16 hidden h-16 w-16 rotate-12 rounded-2xl border border-[#1e4fa3]/15 lg:block" />
+        <div className="pointer-events-none absolute bottom-20 left-16 hidden h-10 w-10 rounded-full border border-gold/30 lg:block" />
+
+        <div className="relative w-full max-w-md rounded-3xl border-t-4 border-[#1e4fa3] bg-white p-8 shadow-[0_30px_70px_-30px_rgba(15,35,70,0.4)] ring-1 ring-black/5 sm:p-9">
           <div className="mb-6 flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1e4fa3]/10 text-[#1e4fa3]">
               <FaBuildingColumns />

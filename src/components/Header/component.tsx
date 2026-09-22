@@ -165,6 +165,16 @@ export function Header({
                   <UserMenu />
                 </div>
                 <Link
+                  href="/school-portal/login"
+                  className={`hidden md:inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-bold transition-colors ${
+                    transparent
+                      ? "border-white/40 text-white hover:bg-white/15"
+                      : "border-[#1e4fa3] text-[#1e4fa3] hover:bg-[#1e4fa3] hover:text-white"
+                  }`}
+                >
+                  School Login
+                </Link>
+                <Link
                   href="/register-school"
                   className="inline-flex items-center gap-2 rounded-full bg-gold hover:bg-gold-dark px-5 py-2.5 text-sm font-bold text-white transition-colors shadow"
                 >

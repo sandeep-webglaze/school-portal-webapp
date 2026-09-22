@@ -16,6 +16,7 @@ import {
 import ContactUs from "../ContactUs/component";
 import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
+import { subscribeNewsletter } from "@/api/newsletter";
 import { SITE_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/constants";
 
 // Contact details come ONLY from constants (never the API/DB) so no Education Portal
@@ -43,11 +44,21 @@ export function Footer({ config: _config }: { config?: IAppConfig }) {
   const currentYear = new Date().getFullYear();
   const [subMail, setSubMail] = useState("");
 
-  const onSubscribe = (e: FormEvent) => {
+  const onSubscribe = async (e: FormEvent) => {
     e.preventDefault();
-    if (!subMail.trim()) return;
-    setSubMail("");
-    toast.success("Thanks for subscribing!", { id: "newsletter" });
+    const email = subMail.trim();
+    if (!email) return;
+    try {
+      const res = await subscribeNewsletter(email);
+      if (res?.error) {
+        toast.error(res.error?.message || "Could not subscribe", { id: "newsletter" });
+        return;
+      }
+      setSubMail("");
+      toast.success("Thanks for subscribing!", { id: "newsletter" });
+    } catch {
+      toast.error("Could not subscribe. Please try again.", { id: "newsletter" });
+    }
   };
 
   const Heading = ({ children }: { children: ReactNode }) => (
