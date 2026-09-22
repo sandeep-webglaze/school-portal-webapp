@@ -69,6 +69,9 @@ export function Footer({ config: _config }: { config?: IAppConfig }) {
     </Link>
   );
 
+  // Hide the public footer inside the school portal (its own dashboard chrome).
+  if (pathName?.startsWith("/school-portal")) return null;
+
   return (
     <Fragment>
       {pathName !== "/thank-you" && pathName !== "/register-school" && (

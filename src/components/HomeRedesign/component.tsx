@@ -78,7 +78,7 @@ const HERO_STATS = [
   { icon: FaBuildingColumns, value: "500+", label: "Schools Listed" },
   { icon: FaUsers, value: "50K+", label: "Happy Parents" },
   { icon: FaShieldHalved, value: "Verified", label: "Information" },
-  { icon: FaMapLocationDot, value: "All Dubai Areas", label: "Covered" },
+  { icon: FaMapLocationDot, value: "All Areas", label: "Covered" },
 ];
 
 const TABS = [
@@ -390,7 +390,7 @@ const HomeRedesign: React.FC = () => {
           className="absolute inset-0 h-full w-full object-cover"
         />
         {/* dark navy gradient so white text is readable, skyline visible on the right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f45]/90 via-[#0b1f45]/50 to-[#0b1f45]/0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f45] via-[#0b1f45]/50 to-[#0b1f45]/0" />
         {/* <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/65 to-white/10" /> */}
         <div className={`relative ${CONTAINER} pt-14 pb-28 md:pt-20 md:pb-32`}>
           <div className="max-w-2xl text-white">
@@ -416,7 +416,7 @@ const HomeRedesign: React.FC = () => {
                     key={s.label}
                     className="flex items-center gap-2 md:gap-3"
                   >
-                    <span className="h-10 w-10 md:h-12 md:w-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center text-gold text-lg md:text-xl">
+                    <span className="h-10 w-10 md:h-12 md:w-12 shrink-0 rounded-full bg-white/20 flex items-center justify-center text-gold text-lg md:text-xl">
                       <s.icon />
                     </span>
 
@@ -444,7 +444,7 @@ const HomeRedesign: React.FC = () => {
       rounded-[26px]
       border-x border-b-0
       border-x-[#c7d3ea]
-      border-t-[3px] border-t-[#1e4fa3]
+      border-t-[6px] border-t-[#1e4fa3]
       bg-white
     "
         >
@@ -488,8 +488,8 @@ const HomeRedesign: React.FC = () => {
                     `
                     : `
                       border
-                      border-[#e3eaf4]
-                      bg-white
+                      border-gold
+                      bg-whtie
                       text-[#30466f]
                       hover:border-[#bcd0ee]
                       hover:bg-[#f7faff]
@@ -700,7 +700,7 @@ const HomeRedesign: React.FC = () => {
                 className="
             ml-auto
             hidden
-                          items-center
+            items-center
 
             text-xs
               rounded-full

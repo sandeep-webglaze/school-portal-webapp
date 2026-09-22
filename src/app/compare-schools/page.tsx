@@ -1,42 +1,35 @@
 import React from "react";
-import CompareSchools from "./CompareSchools";
 import { Metadata } from "next";
+import CompareSchools from "./CompareSchools";
 
 export const metadata: Metadata = {
-  // Title: 56 chars — already good.
-  title: "Compare Schools — Find the Best Educational Institutions",
-  // Description: trimmed from 159 to 152 chars so the Detailed extension
-  // doesn't flag it as borderline. Primary keyword still in first 30 chars.
+  title: "Compare Schools in Dubai — Fees, Curriculum & Ratings",
   description:
-    "Compare schools side by side on academics, facilities, fees, board & location — make an informed decision for your child's education on Education Portal.",
+    "Compare the best schools in Dubai side by side — fees, curriculum, parent ratings and facilities — and choose the right school for your child with confidence.",
   keywords: [
-    "compare schools India",
-    "school comparison tool",
-    "compare CBSE schools",
-    "compare ICSE schools",
-    "side by side school comparison",
-    "school vs school India",
-    "best schools comparison",
-    "Education Portal school comparison",
+    "compare schools Dubai",
+    "Dubai school comparison",
+    "compare school fees Dubai",
+    "best schools in Dubai",
+    "British vs IB schools Dubai",
+    "Dubai school ratings",
   ],
   alternates: { canonical: "/compare-schools" },
   openGraph: {
-    title: "Compare Schools — Education Portal Academy",
+    title: "Compare Schools in Dubai — Fees, Curriculum & Ratings",
     description:
-      "Side-by-side comparison of schools across India. Find the best fit for your child.",
+      "Put Dubai schools side by side and compare fees, curriculum, ratings and facilities in one place.",
     url: "/compare-schools",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Compare Schools — Education Portal Academy",
+    title: "Compare Schools in Dubai — Fees, Curriculum & Ratings",
     description:
-      "Side-by-side comparison of schools across India. Find the best fit for your child.",
+      "Put Dubai schools side by side and compare fees, curriculum, ratings and facilities in one place.",
   },
 };
 
-const page = () => {
+export default function CompareSchoolsPage() {
   return <CompareSchools />;
-};
-
-export default page;
+}

@@ -6,6 +6,7 @@ import { IRegisterSchoolReq, registerSchoolEnquiry } from "@/api/Enquiry";
 import toast from "react-hot-toast";
 import { SITE_NAME } from "@/constants";
 import ContactUs from "@/components/ContactUs/component";
+import SchoolBenefits from "@/components/SchoolBenefits/component";
 import {
   FaBullhorn,
   FaChartLine,
@@ -25,7 +26,7 @@ const BENEFITS = [
   { icon: FaBullhorn, title: "Get discovered", text: "by thousands of parents" },
   { icon: FaChartLine, title: "Genuine leads", text: "real admission enquiries" },
   { icon: FaShieldHalved, title: "Verified profile", text: "you fully control" },
-  { icon: FaStar, title: "100% free listing", text: "no hidden charges" },
+  { icon: FaStar, title: "Team-assisted setup", text: "we help you get listed" },
 ];
 
 const CONTAINER = "mx-auto w-[90%] max-w-[1280px]";
@@ -56,7 +57,9 @@ const RegisterSchool = () => {
       .then((response) => {
         if (response?.data) {
           reset();
-          toast.success("Enquiry Submitted Successfully");
+          toast.success(
+            "Request submitted! Our support team will contact you shortly."
+          );
           window.location.href = `/thank-you?name=register-form`;
         }
       })
@@ -153,7 +156,12 @@ const RegisterSchool = () => {
         {mode === "parent" ? (
           <ContactUs />
         ) : (
-          <div className="grid grid-cols-1 overflow-hidden rounded-[28px] bg-white shadow-[0_25px_60px_-25px_rgba(15,35,70,0.3)] lg:grid-cols-[1.05fr_0.95fr]">
+          <>
+          <SchoolBenefits />
+          <div
+            id="school-register-form"
+            className="scroll-mt-24 grid grid-cols-1 overflow-hidden rounded-[28px] bg-white shadow-[0_25px_60px_-25px_rgba(15,35,70,0.3)] lg:grid-cols-[1.05fr_0.95fr]"
+          >
             {/* ===================== LEFT PANEL (light blue) ===================== */}
             <div className="relative overflow-hidden p-8 sm:p-10">
               <img
@@ -171,7 +179,7 @@ const RegisterSchool = () => {
 
               <div className="relative z-10 flex h-full max-w-md flex-col">
                 <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#173e82] px-3.5 py-1.5 text-xs font-semibold text-white">
-                  <FaCircleCheck className="text-gold" /> Free School Listing
+                  <FaCircleCheck className="text-gold" /> Register Your School
                 </span>
 
                 <h1 className="mt-5 text-2xl font-extrabold leading-snug text-blacky-light sm:text-[30px]">
@@ -180,8 +188,8 @@ const RegisterSchool = () => {
                 </h1>
                 <p className="mt-3 max-w-sm text-sm text-blacky-light/70">
                   Reach thousands of parents in Dubai searching for the right
-                  school. Fill in your details and our team will set up your
-                  listing for free.
+                  school. Submit your details and our support team will contact
+                  you to verify and set up your listing.
                 </p>
 
                 <div className="mt-7 grid grid-cols-2 gap-4">
@@ -233,12 +241,12 @@ const RegisterSchool = () => {
                   </p>
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-green-600/10 px-2.5 py-1 text-[11px] font-bold text-green-600">
-                  <FaCircleCheck className="text-[10px]" /> 100% Free Listing
+                  <FaCircleCheck className="text-[10px]" /> Verified Listing
                 </span>
               </div>
               <p className="mt-2 text-sm text-blacky-light/55">
-                For school owners — list your school and start receiving parent
-                enquiries.
+                For school owners — submit your details and our support team will
+                contact you to complete your listing.
               </p>
 
               <form
@@ -338,6 +346,14 @@ const RegisterSchool = () => {
                   )}
                 </button>
 
+                <div className="rounded-xl bg-[#f4f8fd] p-3 text-center text-[11px] leading-relaxed text-blacky-light/60">
+                  <span className="font-semibold text-[#1e4fa3]">
+                    What happens next:
+                  </span>{" "}
+                  our support team contacts you to verify your details, then
+                  lists your school on Education Portal.
+                </div>
+
                 <p className="text-center text-[11px] text-blacky-light/45">
                   🔒 Your information is safe with us. We never share your
                   details.
@@ -345,6 +361,7 @@ const RegisterSchool = () => {
               </form>
             </div>
           </div>
+          </>
         )}
       </div>
     </section>
