@@ -108,7 +108,7 @@ export function generateSchoolTitle(school: SchoolForSeo): string {
 export function generateSchoolDescription(school: SchoolForSeo): string {
   const rawName = (school.name ?? "").trim();
   const name = rawName ? toTitleCase(rawName) : "this school";
-  const city = school.city?.city ? toTitleCase(school.city.city) : "India";
+  const city = school.city?.city ? toTitleCase(school.city.city) : "Dubai";
   const board = school.schoolBoards?.[0]?.name?.trim() ?? "";
   const boardPhrase = board ? ` (${board})` : "";
 
@@ -177,7 +177,7 @@ export function resolveSchoolDescription(
 export function generateSchoolKeywords(school: SchoolForSeo): string[] {
   const rawName = (school.name ?? "").trim();
   const name = rawName ? toTitleCase(rawName) : "";
-  const city = school.city?.city ? toTitleCase(school.city.city) : "India";
+  const city = school.city?.city ? toTitleCase(school.city.city) : "Dubai";
   const board = school.schoolBoards?.[0]?.name?.trim() ?? "";
 
   const set = new Set<string>();

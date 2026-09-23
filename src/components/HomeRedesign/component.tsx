@@ -352,7 +352,7 @@ const HomeRedesign: React.FC = () => {
           setTrending(
             list.slice(0, 8).map((s: any) => ({
               name: s.name,
-              area: s.city?.city ? `${s.city.city}, Dubai` : "Dubai",
+              area: s.city?.city ? `${s.city.city}, ${s.city.state || "Dubai"}` : "Dubai",
               curriculum: s.schoolBoards?.[0]?.name ?? "School",
               rating: s.avgRating ? s.avgRating.toFixed(1) : "New",
               img:
@@ -1604,7 +1604,7 @@ const HomeRedesign: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section>z
 
       {/* ===================== FAQ ===================== */}
       <section

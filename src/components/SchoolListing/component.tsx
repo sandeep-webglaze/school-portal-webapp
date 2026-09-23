@@ -89,11 +89,27 @@ const FACILITIES = [
 ];
 
 const FEATURES = [
-  { icon: FaBuildingColumns, title: "Verified Schools", text: "Trusted & updated" },
-  { icon: FaScaleBalanced, title: "Compare Easily", text: "Make the right choice" },
+  {
+    icon: FaBuildingColumns,
+    title: "Verified Schools",
+    text: "Trusted & updated",
+  },
+  {
+    icon: FaScaleBalanced,
+    title: "Compare Easily",
+    text: "Make the right choice",
+  },
   { icon: FaLocationDot, title: "Find Near You", text: "Search by location" },
-  { icon: FaFileLines, title: "Complete Information", text: "Fees, facilities, reviews" },
-  { icon: FaUsers, title: "Trusted by Parents", text: "50,000+ happy families" },
+  {
+    icon: FaFileLines,
+    title: "Complete Information",
+    text: "Fees, facilities, reviews",
+  },
+  {
+    icon: FaUsers,
+    title: "Trusted by Parents",
+    text: "50,000+ happy families",
+  },
 ];
 
 const STATS = [
@@ -136,7 +152,7 @@ const SchoolListing: React.FC = () => {
   // ---- Near Me (geolocation) ----
   const [geoLoading, setGeoLoading] = useState(false);
   const [userLoc, setUserLoc] = useState<{ lat: number; lng: number } | null>(
-    null
+    null,
   );
   const [nearNote, setNearNote] = useState<string>("");
   const [geoError, setGeoError] = useState<string>("");
@@ -224,24 +240,24 @@ const SchoolListing: React.FC = () => {
         // Try to line the nearest area up with an area we actually have data for.
         const matched = near.find((n) =>
           areas.some(
-            (a) => a.name.toLowerCase() === n.name.toLowerCase() && a.id
-          )
+            (a) => a.name.toLowerCase() === n.name.toLowerCase() && a.id,
+          ),
         );
         if (matched) {
           const areaOpt = areas.find(
-            (a) => a.name.toLowerCase() === matched.name.toLowerCase()
+            (a) => a.name.toLowerCase() === matched.name.toLowerCase(),
           );
           setSelCity(areaOpt?.id ?? "");
           setNearNote(
             `Showing schools near you — closest area: ${matched.name} (${prettyKm(
-              matched.distanceKm
-            )} away)`
+              matched.distanceKm,
+            )} away)`,
           );
           fetchSchools({ ...buildFilters(), city: areaOpt?.id });
         } else {
           // We know where they are but have no schools in the closest areas yet.
           setNearNote(
-            `You're closest to ${near[0].name}. We'll sort every school by distance from you.`
+            `You're closest to ${near[0].name}. We'll sort every school by distance from you.`,
           );
           fetchSchools(buildFilters());
         }
@@ -251,27 +267,19 @@ const SchoolListing: React.FC = () => {
         setGeoError(
           code === 1
             ? "Location permission was blocked. Allow location in your browser, or pick an area manually."
-            : "Couldn't get your location. Please pick an area from the filters instead."
+            : "Couldn't get your location. Please pick an area from the filters instead.",
         );
       })
       .finally(() => setGeoLoading(false));
   };
 
-  const toggle = (
-    val: string,
-    list: string[],
-    setter: (v: string[]) => void
-  ) =>
+  const toggle = (val: string, list: string[], setter: (v: string[]) => void) =>
     setter(list.includes(val) ? list.filter((v) => v !== val) : [...list, val]);
 
   const activeCount =
     selType.length + selBoard.length + selFac.length + (selCity ? 1 : 0);
 
-  const checkbox = (
-    label: string,
-    checked: boolean,
-    onChange: () => void
-  ) => (
+  const checkbox = (label: string, checked: boolean, onChange: () => void) => (
     <label
       key={label}
       className="flex cursor-pointer items-center gap-2.5 text-sm text-blacky-light/80"
@@ -293,8 +301,8 @@ const SchoolListing: React.FC = () => {
         <div className="space-y-2.5">
           {types.map((t) =>
             checkbox(t.name, selType.includes(t.name), () =>
-              toggle(t.name, selType, setSelType)
-            )
+              toggle(t.name, selType, setSelType),
+            ),
           )}
         </div>
       </div>
@@ -306,8 +314,8 @@ const SchoolListing: React.FC = () => {
         <div className="space-y-2.5">
           {boards.map((b) =>
             checkbox(b.name, selBoard.includes(b.name), () =>
-              toggle(b.name, selBoard, setSelBoard)
-            )
+              toggle(b.name, selBoard, setSelBoard),
+            ),
           )}
         </div>
       </div>
@@ -367,7 +375,7 @@ const SchoolListing: React.FC = () => {
         <p className="mb-3 text-sm font-bold text-blacky-light">Facilities</p>
         <div className="space-y-2.5">
           {FACILITIES.map((f) =>
-            checkbox(f, selFac.includes(f), () => toggle(f, selFac, setSelFac))
+            checkbox(f, selFac.includes(f), () => toggle(f, selFac, setSelFac)),
           )}
         </div>
       </div>
@@ -676,13 +684,13 @@ const SchoolListing: React.FC = () => {
                     </h3>
                     <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-blacky-light/60">
                       <FaLocationDot className="text-green-500" />
-                      {s.city?.city ? `${s.city.city}, Dubai` : "Dubai"}
+                      {s.city?.city ? `${s.city.city} || "Dubai"}` : "Dubai"}
                       {userLoc &&
                         (() => {
                           const d = distanceToArea(
                             userLoc.lat,
                             userLoc.lng,
-                            s.city?.city
+                            s.city?.city,
                           );
                           return d != null ? (
                             <span className="inline-flex items-center gap-1 rounded-full bg-green-600/10 px-2 py-0.5 text-[10px] font-bold text-green-600">
@@ -757,7 +765,10 @@ const SchoolListing: React.FC = () => {
       <section className={`${CONTAINER} pb-4`}>
         <div className="grid grid-cols-2 gap-4 rounded-2xl bg-white p-6 shadow-light lg:grid-cols-4">
           {STATS.map((s) => (
-            <div key={s.label} className="flex items-center justify-center gap-3">
+            <div
+              key={s.label}
+              className="flex items-center justify-center gap-3"
+            >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-600/10 text-green-600">
                 <s.icon />
               </span>

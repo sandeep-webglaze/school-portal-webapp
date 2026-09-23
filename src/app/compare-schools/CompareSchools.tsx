@@ -99,7 +99,7 @@ const CompareSchools: React.FC = () => {
         (s) =>
           s.name?.toLowerCase().includes(n) ||
           s.city?.city?.toLowerCase().includes(n) ||
-          s.schoolBoards?.some((b) => b.name?.toLowerCase().includes(n))
+          s.schoolBoards?.some((b) => b.name?.toLowerCase().includes(n)),
       )
       .slice(0, 30);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -119,14 +119,14 @@ const CompareSchools: React.FC = () => {
     const withFee = picked.filter((s) => s.minFees);
     if (!withFee.length) return undefined;
     return withFee.reduce((a, b) =>
-      (a.minFees || 0) <= (b.minFees || 0) ? a : b
+      (a.minFees || 0) <= (b.minFees || 0) ? a : b,
     )._id;
   }, [picked]);
   const topRated = useMemo(() => {
     const withR = picked.filter((s) => s.avgRating);
     if (!withR.length) return undefined;
     return withR.reduce((a, b) =>
-      (a.avgRating || 0) >= (b.avgRating || 0) ? a : b
+      (a.avgRating || 0) >= (b.avgRating || 0) ? a : b,
     )._id;
   }, [picked]);
 
@@ -141,7 +141,8 @@ const CompareSchools: React.FC = () => {
             <FaScaleBalanced /> Compare Schools
           </span>
           <h1 className="mx-auto max-w-2xl text-3xl font-extrabold leading-tight text-white md:text-[42px]">
-            Compare Dubai Schools <span className="text-gold">Side by Side</span>
+            Compare Dubai Schools{" "}
+            <span className="text-gold">Side by Side</span>
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-sm text-white/75 md:text-base">
             Add up to {MAX} schools and see fees, curriculum, ratings and
@@ -210,7 +211,7 @@ const CompareSchools: React.FC = () => {
                           {s.name}
                         </span>
                         <span className="block truncate text-[11px] text-blacky-light/55">
-                          {s.city?.city ? `${s.city.city}, Dubai` : "Dubai"}
+                          {s.city?.city || "Dubai"}
                           {s.schoolBoards?.[0]?.name
                             ? ` · ${s.schoolBoards[0].name}`
                             : ""}
@@ -295,7 +296,7 @@ const CompareSchools: React.FC = () => {
                   </h3>
                   <p className="mt-1 flex items-center justify-center gap-1 text-[11px] text-blacky-light/55">
                     <FaLocationDot className="text-green-500" />
-                    {s.city?.city ? `${s.city.city}, Dubai` : "Dubai"}
+                    {s.city?.city || "Dubai"}
                   </p>
                   <Link
                     href={`/school/${s.slug}`}
@@ -315,14 +316,14 @@ const CompareSchools: React.FC = () => {
                 cells={picked.map((s) =>
                   s.schoolBoards?.length
                     ? s.schoolBoards.map((b) => b.name).join(", ")
-                    : "—"
+                    : "—",
                 )}
               />
               <Row
                 icon={FaLayerGroup}
                 label="School Type"
                 cells={picked.map((s) =>
-                  s.type?.length ? s.type.map((t) => t.name).join(", ") : "—"
+                  s.type?.length ? s.type.map((t) => t.name).join(", ") : "—",
                 )}
               />
               <Row
@@ -337,7 +338,7 @@ const CompareSchools: React.FC = () => {
                 icon={FaStar}
                 label="Parent Rating"
                 cells={picked.map((s) =>
-                  s.avgRating ? `${s.avgRating.toFixed(1)} / 5` : "New"
+                  s.avgRating ? `${s.avgRating.toFixed(1)} / 5` : "New",
                 )}
                 highlightId={topRated}
                 highlightIds={picked.map((s) => s._id)}
@@ -349,7 +350,7 @@ const CompareSchools: React.FC = () => {
                 cells={picked.map((s) =>
                   s.classFrom || s.classTo
                     ? `${s.classFrom || "—"} – ${s.classTo || "—"}`
-                    : "—"
+                    : "—",
                 )}
               />
 
@@ -416,7 +417,14 @@ const Row: React.FC<{
   highlightId?: string;
   highlightIds?: (string | undefined)[];
   highlightTag?: string;
-}> = ({ icon: Icon, label, cells, highlightId, highlightIds, highlightTag }) => (
+}> = ({
+  icon: Icon,
+  label,
+  cells,
+  highlightId,
+  highlightIds,
+  highlightTag,
+}) => (
   <>
     <div className="flex items-center gap-2 border-t border-gray-100 py-3 text-xs font-semibold text-blacky-light/70">
       <Icon className="text-green-600 text-[11px]" />

@@ -97,7 +97,7 @@ type Scored = SchoolList & {
 function scoreSchools(
   schools: SchoolList[],
   a: Answers,
-  loc: { lat: number; lng: number } | null
+  loc: { lat: number; lng: number } | null,
 ): Scored[] {
   return schools
     .map((s) => {
@@ -110,7 +110,7 @@ function scoreSchools(
       if (a.curriculum && a.curriculum !== "No preference") {
         const key = a.curriculum.split(" ")[0].toLowerCase();
         const match = s.schoolBoards?.some((b) =>
-          b.name?.toLowerCase().includes(key)
+          b.name?.toLowerCase().includes(key),
         );
         if (match) {
           score += 35;
@@ -172,7 +172,11 @@ function scoreSchools(
       max += 5;
       const facs = (s as unknown as { facilities?: Array<{ name?: string }> })
         .facilities;
-      if (a.priorities.includes("Affordable fees") && s.minFees && s.minFees <= 30000) {
+      if (
+        a.priorities.includes("Affordable fees") &&
+        s.minFees &&
+        s.minFees <= 30000
+      ) {
         reasons.push("Great value");
       }
       if (a.priorities.includes("Sports & activities")) {
@@ -304,7 +308,8 @@ const AiSchoolMatch: React.FC = () => {
             <FaWandMagicSparkles /> AI-Powered
           </span>
           <h1 className="mx-auto max-w-2xl text-3xl font-extrabold leading-tight text-white md:text-[40px]">
-            Find Your Child&apos;s <span className="text-gold">Perfect School</span>
+            Find Your Child&apos;s{" "}
+            <span className="text-gold">Perfect School</span>
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-sm text-white/75 md:text-base">
             Answer 5 quick questions and our AI matches you with the best Dubai
@@ -411,8 +416,8 @@ const AiSchoolMatch: React.FC = () => {
                 {answers.area === "near-me"
                   ? "Using your location ✓"
                   : geoLoading
-                  ? "Locating…"
-                  : "Use my current location"}
+                    ? "Locating…"
+                    : "Use my current location"}
               </button>
               <OptionGrid
                 options={[
@@ -542,8 +547,9 @@ const AiSchoolMatch: React.FC = () => {
                         </h3>
                         <p className="mt-0.5 flex items-center gap-1 text-xs text-blacky-light/55">
                           <FaLocationDot className="text-green-500" />
-                          {s.city?.city ? `${s.city.city}, Dubai` : "Dubai"}
-                          {s.distanceKm != null && ` · ${prettyKm(s.distanceKm)}`}
+                          {s.city?.city || "Dubai"}
+                          {s.distanceKm != null &&
+                            ` · ${prettyKm(s.distanceKm)}`}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-1.5">
                           {s.reasons.map((r) => (
@@ -691,7 +697,9 @@ const OptionGrid: React.FC<{
           {o}
           <span
             className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-              on ? "border-green-600 bg-green-600 text-white" : "border-[#cdd8ea]"
+              on
+                ? "border-green-600 bg-green-600 text-white"
+                : "border-[#cdd8ea]"
             }`}
           >
             {on && <FaCircleCheck className="text-[10px]" />}
