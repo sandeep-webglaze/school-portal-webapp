@@ -13,7 +13,7 @@ import { SITE_NAME } from "@/constants";
 
 const RegisterSchoolEnquiry = dynamic(
   () => import("@/components/Modals").then((mod) => mod.RegisterSchoolEnquiry),
-  { ssr: false }
+  { ssr: false },
 );
 
 export function Header({
@@ -59,12 +59,13 @@ export function Header({
             <Link href={"/"} className="flex items-center gap-2">
               <Image
                 priority
-                src={"/logo.png"}
+                src="/logo.png"
                 alt={SITE_NAME}
-                width={46}
-                height={46}
-                className="max-[362px]:w-9 w-12 h-auto rounded-lg"
+                width={64}
+                height={64}
+                className="w-16 h-16 object-contain rounded-lg"
               />
+
               <div className="flex flex-col leading-tight">
                 <p
                   className={`max-[362px]:text-sm text-lg lg:text-[21px] font-extrabold tracking-wide transition-colors ${
@@ -95,9 +96,15 @@ export function Header({
                 onClick={() => setNavbarOpen(!navbarOpen)}
               >
                 <div className="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
-                  <span className={`absolute h-0.5 w-5 transform transition duration-300 ease-in-out ${transparent ? "bg-white" : "bg-green-600"} ${navbarOpen ? "rotate-45 delay-200" : "-translate-y-1.5"}`}></span>
-                  <span className={`absolute h-0.5 transform transition-all duration-200 ease-in-out ${transparent ? "bg-white" : "bg-green-600"} ${navbarOpen ? "w-0 opacity-50" : "w-5 delay-200 opacity-100"}`}></span>
-                  <span className={`absolute h-0.5 w-5 transform transition duration-300 ease-in-out ${transparent ? "bg-white" : "bg-green-600"} ${navbarOpen ? "-rotate-45 delay-200" : "translate-y-1.5"}`}></span>
+                  <span
+                    className={`absolute h-0.5 w-5 transform transition duration-300 ease-in-out ${transparent ? "bg-white" : "bg-green-600"} ${navbarOpen ? "rotate-45 delay-200" : "-translate-y-1.5"}`}
+                  ></span>
+                  <span
+                    className={`absolute h-0.5 transform transition-all duration-200 ease-in-out ${transparent ? "bg-white" : "bg-green-600"} ${navbarOpen ? "w-0 opacity-50" : "w-5 delay-200 opacity-100"}`}
+                  ></span>
+                  <span
+                    className={`absolute h-0.5 w-5 transform transition duration-300 ease-in-out ${transparent ? "bg-white" : "bg-green-600"} ${navbarOpen ? "-rotate-45 delay-200" : "translate-y-1.5"}`}
+                  ></span>
                 </div>
               </button>
             </div>
@@ -113,7 +120,15 @@ export function Header({
                   if (navItem.hasDropdown) {
                     return (
                       <li key={idx} className="mx-1">
-                        <div onClick={() => setOpenDropdown(openDropdown === navItem.title ? null : navItem.title)}>
+                        <div
+                          onClick={() =>
+                            setOpenDropdown(
+                              openDropdown === navItem.title
+                                ? null
+                                : navItem.title,
+                            )
+                          }
+                        >
                           <Dropdown
                             title={navItem.title}
                             items={navItem.dropdownItems || []}
@@ -126,7 +141,12 @@ export function Header({
                   } else if (!navItem.footerOnly && navItem.path) {
                     const isActive = pathname === navItem.path;
                     return (
-                      <Link href={navItem.path} key={idx} target={navItem.target} onClick={handleLinkClick}>
+                      <Link
+                        href={navItem.path}
+                        key={idx}
+                        target={navItem.target}
+                        onClick={handleLinkClick}
+                      >
                         <li
                           className={`flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full transition-colors ${
                             isActive
@@ -136,7 +156,9 @@ export function Header({
                                 : "text-blacky-light hover:bg-white hover:text-green-600"
                           }`}
                         >
-                          {navItem.icon && <navItem.icon className="text-inherit text-base" />}
+                          {navItem.icon && (
+                            <navItem.icon className="text-inherit text-base" />
+                          )}
                           {navItem.title}
                         </li>
                       </Link>
@@ -146,7 +168,9 @@ export function Header({
                       <li
                         key={idx}
                         className={`text-sm font-medium px-4 py-2 rounded-full cursor-pointer transition-colors ${
-                          transparent ? "text-white hover:bg-white/20" : "text-blacky-light hover:bg-white hover:text-green-600"
+                          transparent
+                            ? "text-white hover:bg-white/20"
+                            : "text-blacky-light hover:bg-white hover:text-green-600"
                         }`}
                         onClick={() => {
                           setNavbarOpen(false);

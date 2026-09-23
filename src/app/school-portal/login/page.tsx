@@ -8,6 +8,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import Image from "next/image";
+
 import {
   login,
   saveSession,
@@ -26,6 +28,7 @@ import {
   FaWallet,
   FaChartLine,
 } from "react-icons/fa6";
+import { SITE_NAME } from "@/constants";
 
 const PERKS = [
   { icon: FaBullseye, text: "See & buy real parent admission leads" },
@@ -104,11 +107,19 @@ export default function SchoolLoginPage() {
         <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gold/15 blur-3xl" />
         <div className="pointer-events-none absolute -left-10 bottom-0 h-56 w-56 rounded-full bg-green-600/25 blur-3xl" />
         <Link href="/" className="relative flex items-center gap-2">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/20 text-gold">
-            <FaGraduationCap />
-          </span>
+            {/* <FaGraduationCap /> */}
+            <Image
+              priority
+              src="/logo.png"
+              alt={SITE_NAME}
+              width={72}
+              height={72}
+              className="w-16 h-16 object-contain rounded-lg"
+            />
           <div className="leading-tight">
-            <p className="text-sm font-extrabold text-white">Education Portal</p>
+            <p className="text-sm font-extrabold text-white">
+              Education Portal
+            </p>
             <p className="text-[10px] uppercase tracking-wide text-gold">
               School Panel
             </p>
@@ -126,7 +137,10 @@ export default function SchoolLoginPage() {
           </p>
           <ul className="mt-8 space-y-3">
             {PERKS.map((p) => (
-              <li key={p.text} className="flex items-center gap-3 text-sm text-white/85">
+              <li
+                key={p.text}
+                className="flex items-center gap-3 text-sm text-white/85"
+              >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-gold">
                   <p.icon />
                 </span>
